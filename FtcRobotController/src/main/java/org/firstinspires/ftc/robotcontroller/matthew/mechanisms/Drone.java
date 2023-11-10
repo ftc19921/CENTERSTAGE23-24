@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.robotcontroller.matthew.mechanisms;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Drone {
-    public DcMotor droneMotor;
+    public CRServo droneMotor;
     public void init(HardwareMap hardwareMap) {
-        droneMotor = hardwareMap.get(DcMotor.class, "DroneMotor");
-        droneMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        droneMotor = hardwareMap.get(CRServo.class, "DroneMotor");
+//        droneMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void launch(boolean move) {
