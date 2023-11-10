@@ -14,10 +14,10 @@ public class MecanumDrive implements mechanisms {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "front_Left_Motor");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "front_Right_Motor");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "back_Left_Motor");
-        backRightMotor = hardwareMap.get(DcMotor.class, "back_Right_Motor");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
+        backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -53,8 +53,8 @@ public class MecanumDrive implements mechanisms {
     public void drive(double forward, double right, double rotate){
         double frontLeftPower = forward + right + rotate;
         double frontRightPower = forward - right - rotate;
-        double backLeftPower = forward - right + rotate;
-        double backRightPower = forward + right - rotate;
+        double backLeftPower = forward + right - rotate;
+        double backRightPower = forward - right + rotate;
 
         setPowers(frontLeftPower, frontRightPower, backLeftPower, backRightPower);
     }
