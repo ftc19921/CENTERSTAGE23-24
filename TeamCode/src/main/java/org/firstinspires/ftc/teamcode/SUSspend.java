@@ -11,8 +11,19 @@ public class SUSspend implements Mechanism{
     }
 
     public void move(boolean upOrDown){ //value of true moves the arm up and false moves it down
+        float distanceMoved = 0;
         if (upOrDown) {
-            //TODO MAKE ARM MOVE UP
+
+            while (distanceMoved<100) {
+                hangMotor.setPower(1);
+                distanceMoved += 1;
+            }
+
+        }else {
+            while (distanceMoved>0) {
+                hangMotor.setPower(-1);
+                distanceMoved -= 1;
+        }
         }
     }
 }
