@@ -4,9 +4,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class MacunumDrive implements Mechanism {
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
@@ -15,10 +12,10 @@ public class MacunumDrive implements Mechanism {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "motor_front_left");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "motor_front_right");
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "motor_back_left");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "motor_back_right");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "motorFrontLeft");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "motorFrontRight");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "motorBackLeft");
+        backRightMotor = hardwareMap.get(DcMotor.class, "motorBackRight");
 
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -50,9 +47,9 @@ public class MacunumDrive implements Mechanism {
 
     public void drive(double forward, double right, double turn) {
         double frontLeftPower = forward + right - turn;
-        double frontRightPower = forward + right + turn;
+        double frontRightPower = forward - right + turn;
         double backLeftPower = forward - right - turn;
-        double backRightPower = forward - right + turn;
+        double backRightPower = forward + right + turn;
         setPowers(frontLeftPower, frontRightPower, backLeftPower, backRightPower);
     }
 }

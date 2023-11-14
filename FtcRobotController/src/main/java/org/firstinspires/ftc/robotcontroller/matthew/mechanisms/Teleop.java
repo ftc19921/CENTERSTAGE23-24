@@ -1,9 +1,7 @@
-package org.firstinspires.ftc.robotcontroller.matthew.opmodes;
+package org.firstinspires.ftc.robotcontroller.matthew.mechanisms;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import org.firstinspires.ftc.robotcontroller.matthew.Robot;
 
 @TeleOp
 public class Teleop extends OpMode {
