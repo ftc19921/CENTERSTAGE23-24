@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.robotcontroller.matthew.opmodes;
+package org.firstinspires.ftc.teamcode.robotcontroller.matthew.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.robotcontroller.matthew.Robot;
+import org.firstinspires.ftc.teamcode.robotcontroller.matthew.Robot;
 
 @Autonomous
 public class AutoFarRed extends OpMode {

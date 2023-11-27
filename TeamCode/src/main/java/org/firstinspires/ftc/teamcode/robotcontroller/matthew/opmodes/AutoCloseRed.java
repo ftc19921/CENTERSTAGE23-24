@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.robotcontroller.matthew.mechanisms;
+package org.firstinspires.ftc.teamcode.robotcontroller.matthew.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.teamcode.robotcontroller.matthew.Robot;
+
 @Autonomous
-public class AutoFarRed extends OpMode {
+public class AutoCloseRed extends OpMode {
     Robot robot = new Robot();
     int frame = 0;
     int simToReal = 1;
@@ -21,7 +23,7 @@ public class AutoFarRed extends OpMode {
         if (frame < 100*simToReal) {
             forward = 1;
         }
-        if (frame < 2250*simToReal) {
+        if (frame < 1000*simToReal) {
             if (frame < 100*simToReal) {
                 right = 0.1;
             } else {

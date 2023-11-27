@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.robotcontroller.matthew.mechanisms;
+package org.firstinspires.ftc.teamcode.robotcontroller.matthew.mechanisms;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -12,13 +12,13 @@ public class MacunumDrive implements Mechanism {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "motorFrontLeft");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "motorFrontRight");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "motorBackLeft");
-        backRightMotor = hardwareMap.get(DcMotor.class, "motorBackRight");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
+        backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
 
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
