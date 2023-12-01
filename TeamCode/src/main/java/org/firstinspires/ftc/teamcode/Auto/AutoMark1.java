@@ -1,12 +1,10 @@
 package org.firstinspires.ftc.teamcode.Auto;
 
-import android.location.Location;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.R;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -25,11 +23,19 @@ public class AutoMark1 extends OpMode {
     int Stage;
     OpenCvWebcam webcam;
     int Location;
-    double doubleOdometryX;
-    double doubleOdometryY;
+    double distance;
+    double Forward;
+    double Sideways;
+    double Rotation;
+
+
+
     @Override
     public void init() {
         robot.init(hardwareMap);
+
+
+
         Location =0;
         int Stage = 0;
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -55,39 +61,100 @@ public class AutoMark1 extends OpMode {
 
 
     public void loop() {
-        doubleOdometryX = robot.mecanumDrive.odometryX;
-        doubleOdometryY = robot.mecanumDrive.odometryY;
         telemetry.addData("Location",Location);
         telemetry.addData("Stage",Stage);
-        telemetry.addData("odemetryX",doubleOdometryX);
-        telemetry.addData("odemetryX",doubleOdometryY);
+
+
         if(Location == 1) {
             switch (Stage) {
                 case 0:
-                    robot.auto.Auto(2000, 0.3, 0, 0, Stage,doubleOdometryX,doubleOdometryY);
-
+                    distance=10185;
+                    Forward=0.5;
+                    Sideways=0;
+                    Rotation=0;
+                    break;
+                case 1:
+                    distance=10185;
+                    Forward=0;
+                    Sideways=0;
+                    Rotation=0;
                     break;
             }
         }else if(Location == 2){
             switch (Stage) {
                 case 0:
-                    robot.auto.Auto(1500, 0.3, 0, 0, Stage,doubleOdometryX,doubleOdometryY);
+                    distance=8912;
+                    Forward=0.5;
+                    Sideways=0;
+                    Rotation=0;
+                    break;
                 case 1:
-                    robot.auto.Auto(500, 0, 0, 0.3, Stage,doubleOdometryX,doubleOdometryY);
+                    distance=3500;
+                    Forward=0;
+                    Sideways=0;
+                    Rotation=-1;
+                    break;
+                case 2:
+                    distance=10000;
+                    Forward=0;
+                    Sideways=0;
+                    Rotation=0;
 
                     break;
             }
         }else{
             switch (Stage) {
                 case 0:
-                    robot.auto.Auto(1500, 0.3, 0, 0, Stage,doubleOdometryX,doubleOdometryY);
+                    distance=8912;
+                    Forward=0.5;
+                    Sideways=0;
+                    Rotation=0;
+                    break;
                 case 1:
-                    robot.auto.Auto(500, 0, 0, -0.3, Stage,doubleOdometryX,doubleOdometryY);
+                    distance=3500;
+                    Forward=0;
+                    Sideways=0;
+                    Rotation=1;
+
+                    break;
+                case 2:
+                    distance=10000;
+                    Forward=0;
+                    Sideways=0;
+                    Rotation=0;
 
                     break;
             }
         }
+        double odometryX = robot.mecanumDrive.odometryX;
+        double odometryY = robot.mecanumDrive.odometryY;
+
+        auto(distance,Forward,Sideways,Rotation);
+        telemetry.addData("Distance",Math.abs(odometryX)+Math.abs(odometryY));
     }
+
+
+
+
+    public void auto(double Distance, double forwardPower, double sidewaysPower, double rotationalPower){
+        robot.mecanumDrive.updateOdometry();
+        double odometryX = robot.mecanumDrive.odometryX;
+        double odometryY = robot.mecanumDrive.odometryY;
+        if(Math.abs(odometryX)+Math.abs(odometryY)<Distance){
+            robot.mecanumDrive.updateOdometry();
+            robot.mecanumDrive.Drive(forwardPower, sidewaysPower,rotationalPower,false);
+        }else{
+            Stage++;
+            robot.init(hardwareMap);
+        }
+
+
+    }
+
+
+
+
+
     class Pipeline extends OpenCvPipeline {
 
 
@@ -111,6 +178,7 @@ public class AutoMark1 extends OpMode {
         double MiddleValue;
         Mat outPut = new Mat();
         Scalar blue=new Scalar(0.0,0.0,255.0);
+        Scalar purple=new Scalar(100.0,0.0,155.0);
 
         Scalar red=new Scalar(255.0,0.0,0.0);
 
@@ -119,14 +187,17 @@ public class AutoMark1 extends OpMode {
 
             Imgproc.cvtColor(input, YCBCr, Imgproc.COLOR_RGBA2RGB);
 
-            Rect MiddleRect = new Rect(145, 107, 10, 10);
-            Rect RightRect = new Rect(195, 107, 10, 10);
-            Rect LeftRect = new Rect(115, 107, 10, 10);
-
+            Rect MiddleRect = new Rect(105, 107, 10, 10);
+            Rect RightRect = new Rect(80, 157, 10, 10);
+            Rect LeftRect = new Rect(80, 57, 10, 10);
 
             input.copyTo(outPut);
-            Imgproc.rectangle(outPut, MiddleRect, blue, 2);
-            Imgproc.rectangle(outPut, MiddleRect, red, 2);
+
+            Imgproc.rectangle(outPut, MiddleRect, blue, 1);
+
+            Imgproc.rectangle(outPut, RightRect, red, 1);
+
+            Imgproc.rectangle(outPut, LeftRect, purple, 1);
 
             Mat BlueValue = YCBCr.submat(MiddleRect);
             Mat RedValue = YCBCr.submat(MiddleRect);
