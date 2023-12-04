@@ -23,7 +23,7 @@ public class Teleop extends OpMode {
         }else{
             turn=0;
         }
-        robot.mecanumDrive.Drive(gamepad1.left_stick_y, gamepad1.right_stick_x, turn,true);
+        robot.mecanumDrive.Drive(-gamepad1.left_stick_y, gamepad1.right_stick_x, turn,true);
         if(gamepad2.dpad_up){
             robot.arm.Hang();
         }else if(gamepad2.dpad_down){

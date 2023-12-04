@@ -21,111 +21,152 @@ import org.openftc.easyopencv.OpenCvWebcam;
 public class AutoMark1 extends OpMode {
     Robot robot = new Robot();
     int Stage;
-    OpenCvWebcam webcam;
+
     int Location;
     double distance;
     double Forward;
     double Sideways;
     double Rotation;
+    int CameraOn;
+    int Pause;
+    public double RightValue;
 
+    public double MiddleValue;
 
-
+    public double RightRedAvgfin;
+    public double RightBlueAvgfin;
+    public double BlueAvgfin;
+    public double RedAvgfin;
     @Override
     public void init() {
         robot.init(hardwareMap);
 
-
-
-        Location =0;
+        CameraOn = 20;
+        Pause = 0;
+        Location = 0;
         int Stage = 0;
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam1"), cameraMonitorViewId);
 
-        webcam.setPipeline(new Pipeline());
-        webcam.setMillisecondsPermissionTimeout(2500);
-        webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener(){
-                public void onOpened()
-                {
-
-                    webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-                }
-
-                public void onError(int errorCode)
-                {
-
-                }
-            });
-        }
+    }
 
 
 
 
     public void loop() {
-        telemetry.addData("Location",Location);
-        telemetry.addData("Stage",Stage);
 
 
-        if(Location == 1) {
+
+    if(Pause<1) {
+        if (Location == 10) {
             switch (Stage) {
                 case 0:
-                    distance=10185;
-                    Forward=0.5;
-                    Sideways=0;
-                    Rotation=0;
+                    distance = 10185;
+                    Forward = 0.5;
+                    Sideways = 0;
+                    Rotation = 0;
                     break;
                 case 1:
-                    distance=10185;
-                    Forward=0;
-                    Sideways=0;
-                    Rotation=0;
+                    distance = 10185;
+                    Forward = 0;
+                    Sideways = 0;
+                    Rotation = 0;
                     break;
             }
-        }else if(Location == 2){
+        } else if (Location == 20) {
             switch (Stage) {
                 case 0:
-                    distance=8912;
-                    Forward=0.5;
-                    Sideways=0;
-                    Rotation=0;
+                    distance = 8912;
+                    Forward = 0.1;
+                    Sideways = 0;
+                    Rotation = 0;
                     break;
                 case 1:
-                    distance=3500;
-                    Forward=0;
-                    Sideways=0;
-                    Rotation=-1;
+                    distance = 8912;
+                    Forward = -0.1;
+                    Sideways = 0;
+                    Rotation = 0;
                     break;
                 case 2:
-                    distance=10000;
-                    Forward=0;
-                    Sideways=0;
-                    Rotation=0;
+                    distance = 10000;
+                    Forward = 0;
+                    Sideways = 0;
+                    Rotation = 0;
 
                     break;
             }
-        }else{
+        } else if(Location==30){
             switch (Stage) {
                 case 0:
-                    distance=8912;
-                    Forward=0.5;
-                    Sideways=0;
-                    Rotation=0;
+                    distance = 7812;
+                    Forward = 0.2;
+                    Sideways = 0;
+                    Rotation = 0;
                     break;
                 case 1:
-                    distance=3500;
-                    Forward=0;
-                    Sideways=0;
-                    Rotation=1;
+                    distance = 6000;
+                    Forward = 0;
+                    Sideways = 0;
+                    Rotation = 0.3;
 
                     break;
+
                 case 2:
-                    distance=10000;
-                    Forward=0;
-                    Sideways=0;
-                    Rotation=0;
+                    distance = 1900;
+                    Forward = 0.2;
+                    Sideways = 0;
+                    Rotation = 0;
 
                     break;
+                case 3:
+                    distance = 1900;
+                    Forward = -0.2;
+                    Sideways = 0;
+                    Rotation = 0;
+
+                    break;
+                case 4:
+                    distance = 6000;
+                    Forward = 0;
+                    Sideways = 0;
+                    Rotation = -0.3;
+
+                    break;
+
+                case 5:
+                    distance = 10822;
+                    Forward = 0.2;
+                    Sideways = 0;
+                    Rotation = 0;
+                    break;
+                case 6:
+                    distance = 10000;
+                    Forward = 0;
+                    Sideways = 0;
+                    Rotation = 0.3;
+
+                    break;
+                case 7:
+                    distance = 19735;
+                    Forward = 0.5;
+                    Sideways = 0;
+                    Rotation = 0;
+                    break;
+                case 8:
+                    distance = 10000;
+                    Forward = 0;
+                    Sideways = 0;
+                    Rotation = 0;
+
+                    break;
+
             }
         }
+    }else{
+        Pause--;
+        distance = 10000;
+        Forward = 0;
+        Sideways = 0;
+        Rotation = 0;
+    }
         double odometryX = robot.mecanumDrive.odometryX;
         double odometryY = robot.mecanumDrive.odometryY;
 
@@ -146,6 +187,7 @@ public class AutoMark1 extends OpMode {
         }else{
             Stage++;
             robot.init(hardwareMap);
+            Pause=20;
         }
 
 
@@ -155,93 +197,5 @@ public class AutoMark1 extends OpMode {
 
 
 
-    class Pipeline extends OpenCvPipeline {
 
-
-        Mat YCBCr= new Mat();
-
-        Mat finalBlue= new Mat();
-        Mat finalRed= new Mat();
-        Mat finalBlueRight= new Mat();
-        Mat finalRedRight= new Mat();
-        Mat finalBlueLeft= new Mat();
-        Mat finalRedLeft= new Mat();
-
-        double LeftRedAvgfin;
-        double LeftBlueAvgfin;
-        double RightRedAvgfin;
-        double RightBlueAvgfin;
-        double BlueAvgfin;
-        double RedAvgfin;
-        double RightValue;
-        double LeftValue;
-        double MiddleValue;
-        Mat outPut = new Mat();
-        Scalar blue=new Scalar(0.0,0.0,255.0);
-        Scalar purple=new Scalar(100.0,0.0,155.0);
-
-        Scalar red=new Scalar(255.0,0.0,0.0);
-
-
-        public Mat processFrame(Mat input) {
-
-            Imgproc.cvtColor(input, YCBCr, Imgproc.COLOR_RGBA2RGB);
-
-            Rect MiddleRect = new Rect(105, 107, 10, 10);
-            Rect RightRect = new Rect(80, 157, 10, 10);
-            Rect LeftRect = new Rect(80, 57, 10, 10);
-
-            input.copyTo(outPut);
-
-            Imgproc.rectangle(outPut, MiddleRect, blue, 1);
-
-            Imgproc.rectangle(outPut, RightRect, red, 1);
-
-            Imgproc.rectangle(outPut, LeftRect, purple, 1);
-
-            Mat BlueValue = YCBCr.submat(MiddleRect);
-            Mat RedValue = YCBCr.submat(MiddleRect);
-            Mat RightBlueValue = YCBCr.submat(RightRect);
-            Mat RightRedValue = YCBCr.submat(RightRect);
-            Mat LeftBlueValue = YCBCr.submat(LeftRect);
-            Mat LeftRedValue = YCBCr.submat(MiddleRect);
-
-            Core.extractChannel(BlueValue, finalBlue, 0);
-            Core.extractChannel(RedValue, finalRed, 2);
-            Core.extractChannel(RightBlueValue, finalBlueRight, 0);
-            Core.extractChannel(RightRedValue, finalRedRight, 2);
-            Core.extractChannel(LeftBlueValue, finalBlueLeft, 0);
-            Core.extractChannel(LeftRedValue, finalRedLeft, 2);
-
-            Scalar BlueAvg = Core.mean(finalBlue);
-            Scalar RedAvg = Core.mean(finalRed);
-            Scalar BlueAvgRight = Core.mean(finalBlueRight);
-            Scalar RedAvgRight = Core.mean(finalRedRight);
-            Scalar BlueAvgLeft = Core.mean(finalBlueLeft);
-            Scalar RedAvgLeft = Core.mean(finalRedLeft);
-
-
-            BlueAvgfin = BlueAvg.val[0];
-            RedAvgfin = RedAvg.val[2];
-            RightBlueAvgfin = BlueAvgRight.val[0];
-            RightRedAvgfin = RedAvgRight.val[2];
-            LeftBlueAvgfin = BlueAvgLeft.val[0];
-            LeftRedAvgfin = RedAvgLeft.val[2];
-
-            MiddleValue = BlueAvgfin+RedAvgfin;
-            RightValue = RightBlueAvgfin+RightRedAvgfin;
-            LeftValue = LeftBlueAvgfin+LeftRedAvgfin;
-
-            if(MiddleValue>RightValue&&MiddleValue>LeftValue){
-                Location = 1;
-            }else if (LeftValue>RightValue&&LeftValue>MiddleValue){
-                Location = 2;
-            }else{
-                Location = 3;
-            }
-
-
-            return (outPut);
-        }
-    }
 }
