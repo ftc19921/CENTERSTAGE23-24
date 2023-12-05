@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.robotcontroller.matthew.opmodes;
+package org.firstinspires.ftc.teamcode.robotcontroller.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.robotcontroller.matthew.Robot;
+import org.firstinspires.ftc.teamcode.robotcontroller.Robot;
 import org.firstinspires.ftc.teamcode.robotcontroller.matthew.mechanisms.Camera;
 
 @TeleOp
