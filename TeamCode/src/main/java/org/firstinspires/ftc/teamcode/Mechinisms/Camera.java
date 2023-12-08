@@ -1,6 +1,5 @@
-package org.firstinspires.ftc.teamcode.robotcontroller.matthew.mechanisms;
+package org.firstinspires.ftc.teamcode.Mechinisms;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -16,8 +15,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 
-@Autonomous
-public class Camera implements Mechanism {
+public class Camera {
     OpenCvWebcam webcam;
 
     double Phase;
@@ -26,7 +24,7 @@ public class Camera implements Mechanism {
     double midcol;
 
     String debugString;
-    int location;
+    public int location;
 
     int tolerance = 180;
 
@@ -164,7 +162,7 @@ public class Camera implements Mechanism {
             leftcol = Math.max(LeftBlueAvgfin, LeftRedAvgfin);
             if (Rightcol >= tolerance && Rightcol >= midcol) {
                 debugString = "Team prop is on the Right";
-                location = 1;
+                location = -1;
 //                telemetry.addLine("Team prop is on the Left");
             } else if (midcol > tolerance && midcol >= Rightcol) {
                 debugString = "Team prop is on the Middle";
@@ -172,7 +170,7 @@ public class Camera implements Mechanism {
 //                telemetry.addLine("Team prop is on the Right");
             } else {
                 debugString = "Team prop is on the Left";
-                location = -1;
+                location = 1;
 //                telemetry.addLine("Team prop is on the Middle");
             }
             
