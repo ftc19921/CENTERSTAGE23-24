@@ -30,14 +30,7 @@ public class AutoMark1 extends OpMode {
     double Rotation;
     int CameraOn;
     int Pause;
-    public double RightValue;
 
-    public double MiddleValue;
-
-    public double RightRedAvgfin;
-    public double RightBlueAvgfin;
-    public double BlueAvgfin;
-    public double RedAvgfin;
 
     @Override
     public void init() {
