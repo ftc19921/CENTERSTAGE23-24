@@ -24,6 +24,7 @@ public class AutoMark1 extends OpMode {
     int framesRan;
     int Location;
     double distance;
+    //in Inches
     double Forward;
     double Sideways;
     double Rotation;
@@ -98,7 +99,7 @@ public class AutoMark1 extends OpMode {
         robot.mecanumDrive.updateOdometry();
         double odometryX = robot.mecanumDrive.odometryX;
         double odometryY = robot.mecanumDrive.odometryY;
-        if (Math.abs(odometryX) + Math.abs(odometryY) < Distance) {
+        if (Math.abs(odometryX) + Math.abs(odometryY) < Distance*1104) {
             robot.mecanumDrive.updateOdometry();
             robot.mecanumDrive.Drive(forwardPower, sidewaysPower, rotationalPower, false);
         } else {
