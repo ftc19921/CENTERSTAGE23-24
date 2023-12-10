@@ -31,5 +31,10 @@ public class Teleop extends OpMode {
         }else{
             robot.arm.Stop();
         }
+        if(gamepad2.left_bumper){
+            robot.drone.Launch();
+        }else{
+            robot.drone.Stop();
+        }
     }
 }

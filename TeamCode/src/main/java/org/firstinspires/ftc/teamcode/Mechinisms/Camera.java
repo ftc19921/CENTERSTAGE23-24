@@ -162,11 +162,11 @@ public class Camera {
             leftcol = Math.max(LeftBlueAvgfin, LeftRedAvgfin);
             if (Rightcol >= tolerance && Rightcol >= midcol) {
                 debugString = "Team prop is on the Right";
-                location = -1;
+                location = 1;
 //                telemetry.addLine("Team prop is on the Left");
             } else if (midcol > tolerance && midcol >= Rightcol) {
                 debugString = "Team prop is on the Middle";
-                location = 0;
+                location = 1;
 //                telemetry.addLine("Team prop is on the Right");
             } else {
                 debugString = "Team prop is on the Left";
