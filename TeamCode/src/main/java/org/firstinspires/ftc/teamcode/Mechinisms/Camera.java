@@ -166,11 +166,11 @@ public class Camera {
 //                telemetry.addLine("Team prop is on the Left");
             } else if (midcol > tolerance && midcol >= Rightcol) {
                 debugString = "Team prop is on the Middle";
-                location = 1;
+                location = 0;
 //                telemetry.addLine("Team prop is on the Right");
             } else {
                 debugString = "Team prop is on the Left";
-                location = 1;
+                location = -1;
 //                telemetry.addLine("Team prop is on the Middle");
             }
             
