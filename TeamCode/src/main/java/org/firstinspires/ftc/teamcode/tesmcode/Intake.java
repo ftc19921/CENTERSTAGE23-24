@@ -1,10 +1,7 @@
-package org.firstinspires.ftc.teamcode.Mechinisms;
+package org.firstinspires.ftc.teamcode.tesmcode;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.util.SerialNumber;
-
-import org.firstinspires.ftc.teamcode.Autos.AutoMark1;
 
 public class Intake {
     CRServo placeServo;

@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.teamcode.Mechinisms;
+package org.firstinspires.ftc.teamcode.tesmcode;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 public class Drone {
     CRServo droneServo;
