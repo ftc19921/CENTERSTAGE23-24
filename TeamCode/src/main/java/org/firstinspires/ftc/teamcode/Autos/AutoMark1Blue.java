@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.tesmcode.Autos;
+package org.firstinspires.ftc.teamcode.Autos;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.tesmcode.Robot;
+import org.firstinspires.ftc.teamcode.Robot;
 
 @Autonomous
 public class AutoMark1Blue extends OpMode {
