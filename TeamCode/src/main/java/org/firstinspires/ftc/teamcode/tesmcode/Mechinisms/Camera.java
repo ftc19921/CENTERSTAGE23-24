@@ -149,19 +149,14 @@ public class Camera {
 //            LeftRedAvgfin = LeftRedAvg.val[0];
             MiddleBlueAvgfin = MiddleBlueAvg.val[0];
             MiddleRedAvgfin = MiddleRedAvg.val[0];
-//            telemetry.addData("RB", RightBlueAvgfin);
-//            telemetry.addData("RR", RightRedAvgfin);
-//            telemetry.addData("MB", BlueAvgfin);
-//            telemetry.addData("MR", RedAvgfin);
-//            telemetry.addData("LB", LeftBlueAvgfin);
-//            telemetry.addData("LR", LeftRedAvgfin);
+
             Rightcol = Math.max(RightBlueAvgfin, RightRedAvgfin);
             midcol = Math.max(MiddleBlueAvgfin, MiddleRedAvgfin);
             leftcol = Math.max(LeftBlueAvgfin, LeftRedAvgfin);
-            if ( Rightcol > midcol+10) {
+            if ( Rightcol > midcol+20) {
                 debugString = "Team prop is on the Right";
                 location = 1;
-            } else if ( midcol > Rightcol+10) {
+            } else if ( midcol > Rightcol+20) {
                 debugString = "Team prop is on the Middle";
                 location = 0;
             } else {
@@ -173,8 +168,7 @@ public class Camera {
             debugString += "RR" + (int) RightRedAvgfin;
             debugString += "MB" + (int) MiddleBlueAvgfin;
             debugString += "MR" + (int) MiddleRedAvgfin;
-//            location += "LB" + (int) LeftBlueAvgfin;
-//            location += "LR" + (int) LeftRedAvgfin;
+
 
             return (outPut);
         }
