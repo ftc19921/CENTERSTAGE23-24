@@ -264,7 +264,7 @@ public class AutoMark1 extends OpMode {
         double odometryY = robot.mecanumDrive.odometryY;
         if (Math.abs(odometryX) + Math.abs(odometryY) < Distance*351){
             robot.mecanumDrive.updateOdometry();
-            robot.mecanumDrive.Drive(forwardPower, sidewaysPower, rotationalPower, false);
+            robot.mecanumDrive.Drive(forwardPower, sidewaysPower, rotationalPower);
         } else {
             Stage++;
             robot.mecanumDrive.init(hardwareMap);

@@ -53,7 +53,7 @@ public class MecanumDrive {
         backRightMotor.setPower(backRightPower);
         backLeftMotor.setPower(backLeftPower);
     }
-    public void Drive(double forwardPower,double rightPower,double turnPower,boolean IsTeleOp){
+    public void Drive(double forwardPower,double rightPower,double turnPower){
         double frontLeftPower = forwardPower+rightPower+turnPower;
         double backLeftPower = forwardPower-rightPower+turnPower;
         double frontRightPower = forwardPower-rightPower-turnPower;
