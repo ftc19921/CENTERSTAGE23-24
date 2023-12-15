@@ -161,15 +161,12 @@ public class Camera {
             if ( Rightcol > midcol+10) {
                 debugString = "Team prop is on the Right";
                 location = 1;
-//                telemetry.addLine("Team prop is on the Left");
             } else if ( midcol > Rightcol+10) {
                 debugString = "Team prop is on the Middle";
-                location = 1;
-//                telemetry.addLine("Team prop is on the Right");
+                location = 0;
             } else {
                 debugString = "Team prop is on the Left";
-                location = 1;
-//                telemetry.addLine("Team prop is on the Middle");
+                location = -1;
             }
             
             debugString += "RB" + (int) RightBlueAvgfin;
