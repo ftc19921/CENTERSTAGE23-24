@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.tesmcode;
+package org.firstinspires.ftc.teamcode.tesmcode.Mechinisms;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -26,7 +26,7 @@ public class Camera {
     String debugString;
     public int location;
 
-    int tolerance = 180;
+
 
     public void init(HardwareMap hardwareMap) {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -65,12 +65,10 @@ public class Camera {
         Mat MiddleBlueValue;
         Mat RightRedValue;
         Mat RightBlueValue;
-        Mat LeftRedValue;
-        Mat LeftBlueValue;
+
         Mat MiddlefinalBlue = new Mat();
         Mat MiddlefinalRed = new Mat();
-        Mat LeftfinalBlue = new Mat();
-        Mat LeftfinalRed = new Mat();
+
         Mat RightfinalBlue = new Mat();
         Mat RightfinalRed = new Mat();
 
@@ -160,11 +158,11 @@ public class Camera {
             Rightcol = Math.max(RightBlueAvgfin, RightRedAvgfin);
             midcol = Math.max(MiddleBlueAvgfin, MiddleRedAvgfin);
             leftcol = Math.max(LeftBlueAvgfin, LeftRedAvgfin);
-            if (Rightcol >= tolerance && Rightcol >= midcol) {
+            if ( Rightcol > midcol+10) {
                 debugString = "Team prop is on the Right";
                 location = 1;
 //                telemetry.addLine("Team prop is on the Left");
-            } else if (midcol > tolerance && midcol >= Rightcol) {
+            } else if ( midcol > Rightcol+10) {
                 debugString = "Team prop is on the Middle";
                 location = 1;
 //                telemetry.addLine("Team prop is on the Right");

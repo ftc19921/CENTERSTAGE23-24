@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.tesmcode;
+package org.firstinspires.ftc.teamcode.tesmcode.Autos;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.teamcode.tesmcode.Robot;
+
 @Autonomous
-public class AutoMark1Blue extends OpMode {
+public class AutoMark1 extends OpMode {
     Robot robot = new Robot();
     int Stage;
     int framesRan;
@@ -41,7 +43,7 @@ public class AutoMark1Blue extends OpMode {
         }
         telemetry.addData("location",Location);
         if (Pause < 1) {
-            if (Location == 1) {
+            if (Location == -1) {
                 switch (Stage) {
                     case 0:
                         //move forward 21 inches
@@ -65,11 +67,11 @@ public class AutoMark1Blue extends OpMode {
                         rotation=0;
                         break;
                     case 10:
-                        //turn left 11 inches
+                        //turn right 11 inches
                         distance=11;
                         forward=0;
                         sideways=0;
-                        rotation=-0.5;
+                        rotation=0.5;
                         break;
                     case 4:
                         //move forward 41 inches
@@ -79,14 +81,14 @@ public class AutoMark1Blue extends OpMode {
                         rotation=0;
                         break;
                     case 5:
-                        //move left 7 inches
+                        //move left 10 inches
                         distance=7;
                         forward=0;
-                        sideways=-0.5;
+                        sideways=0.5;
                         rotation=0;
                         break;
                     case 6:
-                        //move right 3 inches and place pixal
+                        //move left 3 inches and place pixal
                         distance=3;
                         forward=0;
                         sideways=0.1;
@@ -102,7 +104,7 @@ public class AutoMark1Blue extends OpMode {
                         rotation=0;
                         break;
                     case 8:
-                        //move left 10 inches
+                        //move left 15 inches
                         distance=10;
                         forward=0;
                         sideways=-0.5;
@@ -129,19 +131,19 @@ public class AutoMark1Blue extends OpMode {
                         sideways=0;
                         rotation=0;
                         break;
-                    case 3:
-                        //turn left 11 inches
+                    case 10:
+                        //turn right 11 inches
                         distance=11;
                         forward=0;
                         sideways=0;
-                        rotation=-0.5;
+                        rotation=0.5;
                         break;
                     case 4:
-                        //move forward 30 inches
-                        distance=30;
-                        forward=0.5;
-                        sideways=0;
-                        rotation=0;
+                    //move forward 30 inches
+                    distance=30;
+                    forward=0.5;
+                    sideways=0;
+                    rotation=0;
                         break;
 
                     case 5:
@@ -172,7 +174,7 @@ public class AutoMark1Blue extends OpMode {
 
 
 
-            else if (Location == -1) {
+            else if (Location == 1) {
 
                 switch (Stage) {
                     case 0:
@@ -196,12 +198,12 @@ public class AutoMark1Blue extends OpMode {
                         sideways=0;
                         rotation=0;
                         break;
-                    case 100:
-                        //turn left 11 inches
+                    case 10:
+                        //turn right 11 inches
                         distance=11;
                         forward=0;
                         sideways=0;
-                        rotation=-0.5;
+                        rotation=0.5;
                         break;
                     case 4:
                         //move forward 30 inches
