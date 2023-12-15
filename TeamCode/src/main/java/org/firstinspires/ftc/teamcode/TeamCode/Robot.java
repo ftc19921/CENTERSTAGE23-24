@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.tesmcode;
+package org.firstinspires.ftc.teamcode.TeamCode;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.tesmcode.Mechinisms.Arm;
-import org.firstinspires.ftc.teamcode.tesmcode.Mechinisms.Camera;
-import org.firstinspires.ftc.teamcode.tesmcode.Mechinisms.Drone;
-import org.firstinspires.ftc.teamcode.tesmcode.Mechinisms.Intake;
-import org.firstinspires.ftc.teamcode.tesmcode.Mechinisms.MecanumDrive;
+import org.firstinspires.ftc.teamcode.TeamCode.Mechinisms.Arm;
+import org.firstinspires.ftc.teamcode.TeamCode.Mechinisms.Camera;
+import org.firstinspires.ftc.teamcode.TeamCode.Mechinisms.Drone;
+import org.firstinspires.ftc.teamcode.TeamCode.Mechinisms.Intake;
+import org.firstinspires.ftc.teamcode.TeamCode.Mechinisms.MecanumDrive;
 
 public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
