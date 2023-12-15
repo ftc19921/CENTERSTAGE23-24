@@ -53,8 +53,8 @@ public class AutoMark1 extends OpMode {
                         rotation=0;
                         break;
                     case 1:
-                        //move left 11 inches
-                        distance=11;
+                        //move left 14 inches
+                        distance=14;
                         forward=0;
                         sideways=-0.5;
                         rotation=0;
@@ -119,7 +119,7 @@ public class AutoMark1 extends OpMode {
                 switch (Stage) {
                     case 0:
                         //move forward 27 inches
-                        distance=27;
+                        distance=32;
                         forward=0.5;
                         sideways=0;
                         rotation=0;
@@ -185,8 +185,8 @@ public class AutoMark1 extends OpMode {
                         rotation=0;
                         break;
                     case 1:
-                        //move right 11 inches
-                        distance=13;
+                        //move right 8.5 inches
+                        distance=8.5;
                         forward=0;
                         sideways=0.5;
                         rotation=0;

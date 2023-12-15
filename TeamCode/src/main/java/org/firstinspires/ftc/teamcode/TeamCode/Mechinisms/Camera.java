@@ -102,11 +102,11 @@ public class Camera {
 //            Rect LeftRectBlue = new Rect(0, (int) height/2, (int) width/3, (int) height/4);
 //            Rect LeftRectRed = new Rect(0, (int) height/2, (int) width/3, (int) height/4);
 
-            Rect MiddleRectBlue = new Rect((int) width/10*3, (int) height/10*4, (int) width/5, (int) height/4);
-            Rect MiddleRectRed = new Rect((int) width/10*3, (int) height/10*4, (int) width/5, (int) height/4);
+            Rect MiddleRectBlue = new Rect(20,140, (int) width/5, (int) height/4);
+            Rect MiddleRectRed = new Rect(20, (int) 140, (int) width/5, (int) height/4);
 
-            Rect RightRectBlue = new Rect((int) width/10*9, (int) height/2, (int) width/10, (int) height/8);
-            Rect RightRectRed = new Rect((int) width/10*9, (int) height/2, (int) width/10, (int) height/8);
+            Rect RightRectBlue = new Rect(230, (int) height/2, (int) width/10, (int) height/8);
+            Rect RightRectRed = new Rect(230, (int) height/2, (int) width/10, (int) height/8);
 
 
             input.copyTo(outPut);

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.TeamCode.Robot;
 
 @TeleOp
-public class Teleop extends OpMode {
+public class RealTeleop extends OpMode {
     Robot robot = new Robot();
     double turn;
     @Override
