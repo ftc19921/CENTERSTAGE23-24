@@ -254,7 +254,7 @@ public class AutoMark1Blue extends OpMode {
         auto(distance, forward, sideways, rotation);
         telemetry.addData("Distance", Math.abs(odometryX) + Math.abs(odometryY));
         placePower=1;
-        robot.intake.place(placePower,canPlace);
+        robot.microPlacer.place(placePower,canPlace);
     }
 
 

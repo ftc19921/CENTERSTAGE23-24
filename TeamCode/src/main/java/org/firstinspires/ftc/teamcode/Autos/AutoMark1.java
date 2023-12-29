@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Autos;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -255,7 +254,7 @@ public class AutoMark1 extends OpMode {
         auto(distance, forward, sideways, rotation);
         telemetry.addData("Distance", Math.abs(odometryX) + Math.abs(odometryY));
         placePower=1;
-        robot.intake.place(placePower,canPlace);
+        robot.microPlacer.place(placePower,canPlace);
     }
 
 
