@@ -32,7 +32,7 @@ public class MecanumDrive {
         odometryPodX.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         odometryPodX.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         odometryPodY.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     private void setPowers(double frontRightPower,double frontLeftPower,double backLeftPower,double backRightPower){

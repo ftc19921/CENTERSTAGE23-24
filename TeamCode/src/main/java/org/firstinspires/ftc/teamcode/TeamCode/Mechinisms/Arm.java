@@ -10,9 +10,9 @@ public class Arm {
         HangingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
     public void Hang(){
-        HangingMotor.setPower(-0.8);
+        HangingMotor.setPower(-1);
     }
-    public void DeHang(){HangingMotor.setPower(0.8);}
+    public void DeHang(){HangingMotor.setPower(1);}
     public void Stop(){
         HangingMotor.setPower(0);
     }

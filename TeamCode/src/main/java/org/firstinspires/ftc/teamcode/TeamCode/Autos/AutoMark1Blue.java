@@ -31,6 +31,7 @@ public class AutoMark1Blue extends OpMode {
         int Stage = 0;
         placePower=0;
         canPlace=false;
+        Location = robot.camera.getLocation();
     }
 
 
@@ -38,7 +39,7 @@ public class AutoMark1Blue extends OpMode {
         telemetry.addData("Location", robot.camera.getDebugString());
         telemetry.addData("Stage", Stage);
         framesRan++;
-        if(framesRan<4) {
+        if(framesRan<2) {
             Location = robot.camera.getLocation();
         }
         telemetry.addData("location",Location);
@@ -119,7 +120,7 @@ public class AutoMark1Blue extends OpMode {
                 switch (Stage) {
                     case 0:
                         //move forward 27 inches
-                        distance=32;
+                        distance=27;
                         forward=0.5;
                         sideways=0;
                         rotation=0;
@@ -193,7 +194,7 @@ public class AutoMark1Blue extends OpMode {
                         break;
                     case 2:
                         //move back 7 inches
-                        distance=7;
+                        distance=3;
                         forward=-0.5;
                         sideways=0;
                         rotation=0;

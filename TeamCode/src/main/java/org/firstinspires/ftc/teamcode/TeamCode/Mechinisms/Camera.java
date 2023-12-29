@@ -15,13 +15,13 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 
-public class Camera {
+public class Camera{
     OpenCvWebcam webcam;
 
     double Phase;
-    double Rightcol;
-    double leftcol;
-    double midcol;
+    double RightCol;
+    double leftCol;
+    double MiddleCol;
 
     String debugString;
     public int location;
@@ -38,7 +38,7 @@ public class Camera {
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-//                telemetry.addLine("cam online");
+
                 webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
             }
 
@@ -82,14 +82,12 @@ public class Camera {
         Mat outPut = new Mat();
 
 
-        Scalar Middleblue = new Scalar(0.0, 0.0, 255.0);
-        Scalar Middlered = new Scalar(255.0, 0.0, 0.0);
+        Scalar MiddleBlue = new Scalar(0.0, 0.0, 255.0);
+        Scalar MiddleRed = new Scalar(255.0, 0.0, 0.0);
 
-        Scalar Rightblue = new Scalar(0.0, 0.0, 255.0);
-        Scalar Rightred = new Scalar(255.0, 0.0, 0.0);
+        Scalar RightBlue = new Scalar(0.0, 0.0, 255.0);
+        Scalar RightRed = new Scalar(255.0, 0.0, 0.0);
 
-        Scalar Leftblue = new Scalar(0.0, 0.0, 255.0);
-        Scalar Leftred = new Scalar(255.0, 0.0, 0.0);
 
         @Override
         public Mat processFrame(Mat input) {
@@ -99,25 +97,24 @@ public class Camera {
             double width = size.width;
             double height = size.height;
 
-//            Rect LeftRectBlue = new Rect(0, (int) height/2, (int) width/3, (int) height/4);
-//            Rect LeftRectRed = new Rect(0, (int) height/2, (int) width/3, (int) height/4);
 
-            Rect MiddleRectBlue = new Rect(20,140, (int) width/5, (int) height/4);
-            Rect MiddleRectRed = new Rect(20, (int) 140, (int) width/5, (int) height/4);
 
-            Rect RightRectBlue = new Rect(230, (int) height/2, (int) width/10, (int) height/8);
-            Rect RightRectRed = new Rect(230, (int) height/2, (int) width/10, (int) height/8);
+            Rect MiddleRectBlue = new Rect(100,35, (int) width/10, (int) height/10);
+            Rect MiddleRectRed = new Rect(100, 35, (int) width/10, (int) height/10);
+
+            Rect RightRectBlue = new Rect(290, 90, (int) width/20, (int) height/8);
+            Rect RightRectRed = new Rect(290, 90, (int) width/20, (int) height/8);
+
 
 
             input.copyTo(outPut);
-            Imgproc.rectangle(outPut, MiddleRectBlue, Middleblue, 2);
-            Imgproc.rectangle(outPut, MiddleRectRed, Middlered, 2);
+            Imgproc.rectangle(outPut, MiddleRectBlue, MiddleBlue, 2);
+            Imgproc.rectangle(outPut, MiddleRectRed, MiddleRed, 2);
 
-            Imgproc.rectangle(outPut, RightRectBlue, Rightblue, 2);
-            Imgproc.rectangle(outPut, RightRectRed, Rightred, 2);
+            Imgproc.rectangle(outPut, RightRectBlue, RightBlue, 2);
+            Imgproc.rectangle(outPut, RightRectRed, RightRed, 2);
 
-//            Imgproc.rectangle(outPut, LeftRectBlue, Leftblue, 2);
-//            Imgproc.rectangle(outPut, LeftRectRed, Leftred, 2);
+
 
 
             MiddleBlueValue = YCBCr.submat(MiddleRectBlue);
@@ -126,37 +123,33 @@ public class Camera {
             RightBlueValue = YCBCr.submat(RightRectBlue);
             RightRedValue = YCBCr.submat(RightRectRed);
 
-//            LeftBlueValue = YCBCr.submat(LeftRectBlue);
-//            LeftRedValue = YCBCr.submat(LeftRectRed);
+
 
             Core.extractChannel(MiddleBlueValue, MiddlefinalBlue, 2);
             Core.extractChannel(MiddleRedValue, MiddlefinalRed, 0);
             Core.extractChannel(RightBlueValue, RightfinalBlue, 2);
             Core.extractChannel(RightRedValue, RightfinalRed, 0);
-//            Core.extractChannel(LeftBlueValue, LeftfinalBlue, 2);
-//            Core.extractChannel(LeftRedValue, LeftfinalRed, 0);
+
 
             Scalar MiddleBlueAvg = Core.mean(MiddlefinalBlue);
             Scalar MiddleRedAvg = Core.mean(MiddlefinalRed);
             Scalar RightBlueAvg = Core.mean(RightfinalBlue);
             Scalar RightRedAvg = Core.mean(RightfinalRed);
-//            Scalar LeftBlueAvg = Core.mean(LeftfinalBlue);
-//            Scalar LeftRedAvg = Core.mean(LeftfinalRed);
+
 
             RightBlueAvgfin = RightBlueAvg.val[0];
             RightRedAvgfin = RightRedAvg.val[0];
-//            LeftBlueAvgfin = LeftBlueAvg.val[0];
-//            LeftRedAvgfin = LeftRedAvg.val[0];
+
             MiddleBlueAvgfin = MiddleBlueAvg.val[0];
             MiddleRedAvgfin = MiddleRedAvg.val[0];
 
-            Rightcol = Math.max(RightBlueAvgfin, RightRedAvgfin);
-            midcol = Math.max(MiddleBlueAvgfin, MiddleRedAvgfin);
-            leftcol = Math.max(LeftBlueAvgfin, LeftRedAvgfin);
-            if ( Rightcol > midcol+20) {
+            RightCol = Math.max(RightBlueAvgfin, RightRedAvgfin);
+            MiddleCol = Math.max(MiddleBlueAvgfin, MiddleRedAvgfin);
+            leftCol = Math.max(LeftBlueAvgfin, LeftRedAvgfin);
+            if ( RightCol > MiddleCol +8) {
                 debugString = "Team prop is on the Right";
                 location = 1;
-            } else if ( midcol > Rightcol+20) {
+            } else if ( MiddleCol > RightCol+8) {
                 debugString = "Team prop is on the Middle";
                 location = 0;
             } else {
@@ -164,10 +157,9 @@ public class Camera {
                 location = -1;
             }
             
-            debugString += "RB" + (int) RightBlueAvgfin;
-            debugString += "RR" + (int) RightRedAvgfin;
-            debugString += "MB" + (int) MiddleBlueAvgfin;
-            debugString += "MR" + (int) MiddleRedAvgfin;
+            debugString += "Right:  " + (int) RightCol;
+            debugString += "Middle:  " + (int) RightCol;
+            debugString += "Left:  " + (int) MiddleCol;
 
 
             return (outPut);
