@@ -92,18 +92,18 @@ public class Camera{
         @Override
         public Mat processFrame(Mat input) {
 
-            Imgproc.cvtColor(input, YCBCr, Imgproc.COLOR_RGBA2RGB);
+            Imgproc.cvtColor(input, YCBCr, Imgproc.COLOR_RGB2YCrCb);
             Size size = outPut.size();
             double width = size.width;
             double height = size.height;
 
 
 
-            Rect MiddleRectBlue = new Rect(100,35, (int) width/10, (int) height/10);
-            Rect MiddleRectRed = new Rect(100, 35, (int) width/10, (int) height/10);
+            Rect MiddleRectBlue = new Rect(40,75, (int) width/10, (int) height/8);
+            Rect MiddleRectRed = new Rect(40, 75, (int) width/10, (int) height/8);
 
-            Rect RightRectBlue = new Rect(290, 90, (int) width/20, (int) height/8);
-            Rect RightRectRed = new Rect(290, 90, (int) width/20, (int) height/8);
+            Rect RightRectBlue = new Rect(220, 120, (int) width/10, (int) height/8);
+            Rect RightRectRed = new Rect(220, 120, (int) width/10, (int) height/8);
 
 
 
@@ -126,9 +126,9 @@ public class Camera{
 
 
             Core.extractChannel(MiddleBlueValue, MiddlefinalBlue, 2);
-            Core.extractChannel(MiddleRedValue, MiddlefinalRed, 0);
+            Core.extractChannel(MiddleRedValue, MiddlefinalRed, 1);
             Core.extractChannel(RightBlueValue, RightfinalBlue, 2);
-            Core.extractChannel(RightRedValue, RightfinalRed, 0);
+            Core.extractChannel(RightRedValue, RightfinalRed, 1);
 
 
             Scalar MiddleBlueAvg = Core.mean(MiddlefinalBlue);
@@ -143,9 +143,9 @@ public class Camera{
             MiddleBlueAvgfin = MiddleBlueAvg.val[0];
             MiddleRedAvgfin = MiddleRedAvg.val[0];
 
-            RightCol = Math.max(RightBlueAvgfin, RightRedAvgfin);
-            MiddleCol = Math.max(MiddleBlueAvgfin, MiddleRedAvgfin);
-            leftCol = Math.max(LeftBlueAvgfin, LeftRedAvgfin);
+            RightCol = RightBlueAvgfin+ RightRedAvgfin;
+            MiddleCol = MiddleBlueAvgfin+ MiddleRedAvgfin;
+
             if ( RightCol > MiddleCol +8) {
                 debugString = "Team prop is on the Right";
                 location = 1;
@@ -158,8 +158,8 @@ public class Camera{
             }
             
             debugString += "Right:  " + (int) RightCol;
-            debugString += "Middle:  " + (int) RightCol;
-            debugString += "Left:  " + (int) MiddleCol;
+            debugString += "Middle:  " + (int) MiddleCol;
+
 
 
             return (outPut);

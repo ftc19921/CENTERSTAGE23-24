@@ -33,6 +33,7 @@ public class AutoMark1 extends OpMode {
         canPlace=false;
         Location = robot.camera.getLocation();
         telemetry.addData("Location", robot.camera.getDebugString());
+
     }
 
 
@@ -40,12 +41,14 @@ public class AutoMark1 extends OpMode {
         telemetry.addData("Location", robot.camera.getDebugString());
         telemetry.addData("Stage", Stage);
         framesRan++;
-        if(framesRan<2) {
+
+        if(framesRan<10) {
             Location = robot.camera.getLocation();
         }else {
             telemetry.addData("location", Location);
             if (Pause < 1) {
                 if (Location == -1) {
+
                     switch (Stage) {
                         case 0:
                             //move forward 21 inches
@@ -55,20 +58,21 @@ public class AutoMark1 extends OpMode {
                             rotation = 0;
                             break;
                         case 1:
-                            //move left 14 inches
-                            distance = 16;
+                            //move left 17 inches
+                            distance = 17;
                             forward = 0;
+
                             sideways = -0.5;
                             rotation = 0;
                             break;
                         case 2:
                             //move back 7 inches
-                            distance = 3;
+                            distance = 7;
                             forward = -0.5;
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 10:
+                        /*case 10:
                             //turn right 11 inches
                             distance = 11;
                             forward = 0;
@@ -112,14 +116,16 @@ public class AutoMark1 extends OpMode {
                             sideways = -0.5;
                             rotation = 0;
                             break;
+
+                         */
                     }
 
 
                 } else if (Location == 0) {
                     switch (Stage) {
                         case 0:
-                            //move forward 27 inches
-                            distance = 27;
+                            //move forward 28 inches
+                            distance = 28;
                             forward = 0.5;
                             sideways = 0;
                             rotation = 0;
@@ -131,7 +137,7 @@ public class AutoMark1 extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 10:
+                       /* case 10:
                             //turn right 11 inches
                             distance = 11;
                             forward = 0;
@@ -169,6 +175,8 @@ public class AutoMark1 extends OpMode {
                             sideways = 0.5;
                             rotation = 0;
                             break;
+
+                        */
                     }
                 } else if (Location == 1) {
 
@@ -181,8 +189,8 @@ public class AutoMark1 extends OpMode {
                             rotation = 0;
                             break;
                         case 1:
-                            //move right 9 inches
-                            distance = 8.5;
+                            //move right 5 inches
+                            distance = 8;
                             forward = 0;
                             sideways = 0.5;
                             rotation = 0;
@@ -194,6 +202,7 @@ public class AutoMark1 extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
+                            /*
                         case 10:
                             //turn right 11 inches
                             distance = 11;
@@ -233,6 +242,8 @@ public class AutoMark1 extends OpMode {
                             sideways = 0.5;
                             rotation = 0;
                             break;
+
+                             */
 
                     }
                 }
