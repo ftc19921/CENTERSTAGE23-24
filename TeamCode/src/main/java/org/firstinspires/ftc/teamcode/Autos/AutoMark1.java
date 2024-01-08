@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Autos;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -67,7 +66,7 @@ public class AutoMark1 extends OpMode {
                         sideways=0;
                         rotation=0;
                         break;
-                    case 3:
+                    case 10:
                         //turn right 11 inches
                         distance=11;
                         forward=0;
@@ -132,7 +131,7 @@ public class AutoMark1 extends OpMode {
                         sideways=0;
                         rotation=0;
                         break;
-                    case 3:
+                    case 10:
                         //turn right 11 inches
                         distance=11;
                         forward=0;
@@ -187,7 +186,7 @@ public class AutoMark1 extends OpMode {
                         break;
                     case 1:
                         //move right 11 inches
-                        distance=11;
+                        distance=13;
                         forward=0;
                         sideways=0.5;
                         rotation=0;
@@ -199,7 +198,7 @@ public class AutoMark1 extends OpMode {
                         sideways=0;
                         rotation=0;
                         break;
-                    case 3:
+                    case 10:
                         //turn right 11 inches
                         distance=11;
                         forward=0;

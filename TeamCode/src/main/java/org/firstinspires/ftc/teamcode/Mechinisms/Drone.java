@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Mechinisms;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 public class Drone {
     CRServo droneServo;

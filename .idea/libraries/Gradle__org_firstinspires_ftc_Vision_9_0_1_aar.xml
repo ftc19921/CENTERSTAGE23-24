@@ -2,7 +2,6 @@
   <library name="Gradle: org.firstinspires.ftc:Vision:9.0.1@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cd31413846fedbc3f07e7f3a1c12ceee/transformed/jetified-Vision-9.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cd31413846fedbc3f07e7f3a1c12ceee/transformed/jetified-Vision-9.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cd31413846fedbc3f07e7f3a1c12ceee/transformed/jetified-Vision-9.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

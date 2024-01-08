@@ -43,7 +43,7 @@ public class AutoMark1Blue extends OpMode {
         }
         telemetry.addData("location",Location);
         if (Pause < 1) {
-            if (Location == -1) {
+            if (Location == 1) {
                 switch (Stage) {
                     case 0:
                         //move forward 21 inches
@@ -66,7 +66,7 @@ public class AutoMark1Blue extends OpMode {
                         sideways=0;
                         rotation=0;
                         break;
-                    case 3:
+                    case 10:
                         //turn left 11 inches
                         distance=11;
                         forward=0;
@@ -174,7 +174,7 @@ public class AutoMark1Blue extends OpMode {
 
 
 
-            else if (Location == 1) {
+            else if (Location == -1) {
 
                 switch (Stage) {
                     case 0:
@@ -186,7 +186,7 @@ public class AutoMark1Blue extends OpMode {
                         break;
                     case 1:
                         //move right 11 inches
-                        distance=11;
+                        distance=13;
                         forward=0;
                         sideways=0.5;
                         rotation=0;
@@ -198,7 +198,7 @@ public class AutoMark1Blue extends OpMode {
                         sideways=0;
                         rotation=0;
                         break;
-                    case 3:
+                    case 100:
                         //turn left 11 inches
                         distance=11;
                         forward=0;
