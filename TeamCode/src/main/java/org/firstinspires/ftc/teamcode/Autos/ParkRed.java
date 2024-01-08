@@ -28,17 +28,17 @@ public class ParkRed extends OpMode{
         telemetry.addData("positon x:", posX);
         telemetry.addData("positon y:", posY);
         framesRan ++;
-        if (posY < 5) {
+        if (posX < 1500) {
             forward += 0.1;
         }
-        if (posY > 6){
+        if (posX > 2000){
             forward -= 0.1;
         }
-        if (posX < 145 & posY > 5){
-            right -= 1;
+        if (posY > -145000 & posX > 1500){
+            right += 0.1;
         }
-        if (posX > 150){
-            right += 1;
+        if (posY < -150000){
+            right -= 0.1;
         }
 
 
