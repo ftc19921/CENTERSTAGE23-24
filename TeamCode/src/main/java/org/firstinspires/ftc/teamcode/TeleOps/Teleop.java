@@ -25,16 +25,16 @@ public class Teleop extends OpMode {
         }
         robot.mecanumDrive.Drive(-gamepad1.left_stick_y, gamepad1.right_stick_x, turn);
         if(gamepad2.dpad_up){
-            robot.arm.Hang();
+            robot.arm.place();
         }else if(gamepad2.dpad_down){
-            robot.arm.DeHang();
+            robot.arm.flat();
         }else{
-            robot.arm.Stop();
+            robot.arm.hang();
         }
         if(gamepad2.left_bumper){
-            robot.drone.Launch();
+            robot.drone.launch();
         }else{
-            robot.drone.Stop();
+            robot.drone.stop();
         }
     }
 }

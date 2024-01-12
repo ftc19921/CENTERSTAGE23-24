@@ -74,5 +74,4 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
   </component>
-  <component name="TestModuleProperties" production-module="CENTERSTAGE23-24.TeamCode.main" />
 </module>
