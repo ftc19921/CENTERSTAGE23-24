@@ -28,23 +28,24 @@ public class ParkBlue extends OpMode{
         telemetry.addData("positon x:", posX);
         telemetry.addData("positon y:", posY);
         framesRan ++;
-        if (posX < 702) {
+        if (posX < 802) {
             forward += 0.1;
         }
-        if (posX > 752){
+        if (posX > 812){
             forward -= 0.1;
         }
-        if (posY > -35100 & posX > 2702){
-            right -= 0.1;
+        if (posY < 30100 & posY > 802){
+            right -= 0.2;
         }
-        if (posY < -36100){
-            right += 0.1;
+        if (posY > 31100){
+            right += 0.2;
         }
 
 
 
 
-        robot.mecanumDrive.Drive(forward, 0, 0);
+
+        robot.mecanumDrive.Drive(forward, right, 0);
 
     }
     }
