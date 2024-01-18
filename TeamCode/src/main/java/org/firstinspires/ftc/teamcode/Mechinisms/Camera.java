@@ -19,12 +19,14 @@ public class Camera{
     OpenCvWebcam webcam;
 
     double Phase;
-    double RightCol;
-    double leftCol;
-    double MiddleCol;
+    public double RightCol;
+    public double LeftCol;
+    public double MiddleCol;
+    public double LeftMiddleCol;
 
     String debugString;
     public int location;
+    public int blueLocation;
 
 
 
@@ -56,6 +58,9 @@ public class Camera{
     public int getLocation() {
         return location;
     }
+    public int getBlueLocation() {
+        return blueLocation;
+    }
 
     class Pipeline extends OpenCvPipeline {
 
@@ -66,27 +71,40 @@ public class Camera{
         Mat RightRedValue;
         Mat RightBlueValue;
 
+        Mat LeftMiddleRedValue;
+        Mat LeftMiddleBlueValue;
+        Mat LeftRedValue;
+        Mat LeftBlueValue;
+
         Mat MiddlefinalBlue = new Mat();
         Mat MiddlefinalRed = new Mat();
 
         Mat RightfinalBlue = new Mat();
         Mat RightfinalRed = new Mat();
 
+        Mat LeftMiddlefinalBlue = new Mat();
+        Mat LeftMiddlefinalRed = new Mat();
+
+        Mat LeftfinalBlue = new Mat();
+        Mat LeftfinalRed = new Mat();
+
         double MiddleBlueAvgfin;
         double MiddleRedAvgfin;
         double RightBlueAvgfin;
         double RightRedAvgfin;
+        double LeftMiddleBlueAvgfin;
+        double LeftMiddleRedAvgfin;
         double LeftBlueAvgfin;
         double LeftRedAvgfin;
 
         Mat outPut = new Mat();
 
 
-        Scalar MiddleBlue = new Scalar(0.0, 0.0, 255.0);
-        Scalar MiddleRed = new Scalar(255.0, 0.0, 0.0);
 
-        Scalar RightBlue = new Scalar(0.0, 0.0, 255.0);
-        Scalar RightRed = new Scalar(255.0, 0.0, 0.0);
+        Scalar Blue = new Scalar(0, 255, 0.0);
+        Scalar Green = new Scalar(0.0, 0.0, 255.0);
+        Scalar Red = new Scalar(255.0, 0.0, 0.0);
+        Scalar Yellow = new Scalar(125,0,0);
 
 
         @Override
@@ -99,20 +117,33 @@ public class Camera{
 
 
 
-            Rect MiddleRectBlue = new Rect(40,75, (int) width/10, (int) height/8);
-            Rect MiddleRectRed = new Rect(40, 75, (int) width/10, (int) height/8);
+            Rect MiddleRectBlue = new Rect(40,115, (int) width/10, (int) height/8);
+            Rect MiddleRectRed = new Rect(40, 115, (int) width/10, (int) height/8);
 
-            Rect RightRectBlue = new Rect(220, 120, (int) width/10, (int) height/8);
-            Rect RightRectRed = new Rect(220, 120, (int) width/10, (int) height/8);
+            Rect RightRectBlue = new Rect(190, 120, (int) width/10, (int) height/8);
+            Rect RightRectRed = new Rect(190, 120, (int) width/10, (int) height/8);
+
+            Rect LeftRectBlue = new Rect(10,140, (int) width/10, (int) height/8);
+            Rect LeftRectRed = new Rect(10, 140, (int) width/10, (int) height/8);
+
+            Rect LeftMiddleRectBlue = new Rect(150, 120, (int) width/10, (int) height/8);
+            Rect LeftMiddleRectRed = new Rect(150, 120, (int) width/10, (int) height/8);
+
 
 
 
             input.copyTo(outPut);
-            Imgproc.rectangle(outPut, MiddleRectBlue, MiddleBlue, 2);
-            Imgproc.rectangle(outPut, MiddleRectRed, MiddleRed, 2);
+            Imgproc.rectangle(outPut, MiddleRectBlue, Blue, 2);
+            Imgproc.rectangle(outPut, MiddleRectRed, Blue, 2);
 
-            Imgproc.rectangle(outPut, RightRectBlue, RightBlue, 2);
-            Imgproc.rectangle(outPut, RightRectRed, RightRed, 2);
+            Imgproc.rectangle(outPut, RightRectBlue, Red, 2);
+            Imgproc.rectangle(outPut, RightRectRed, Red, 2);
+
+            Imgproc.rectangle(outPut, LeftMiddleRectBlue, Yellow, 2);
+            Imgproc.rectangle(outPut, LeftMiddleRectRed, Yellow, 2);
+
+            Imgproc.rectangle(outPut, LeftRectBlue, Green, 2);
+            Imgproc.rectangle(outPut, LeftRectRed, Green, 2);
 
 
 
@@ -123,6 +154,12 @@ public class Camera{
             RightBlueValue = YCBCr.submat(RightRectBlue);
             RightRedValue = YCBCr.submat(RightRectRed);
 
+            LeftMiddleBlueValue = YCBCr.submat(LeftMiddleRectBlue);
+            LeftMiddleRedValue = YCBCr.submat(LeftMiddleRectRed);
+
+            LeftBlueValue = YCBCr.submat(LeftRectBlue);
+            LeftRedValue = YCBCr.submat(LeftRectRed);
+
 
 
             Core.extractChannel(MiddleBlueValue, MiddlefinalBlue, 2);
@@ -130,11 +167,21 @@ public class Camera{
             Core.extractChannel(RightBlueValue, RightfinalBlue, 2);
             Core.extractChannel(RightRedValue, RightfinalRed, 1);
 
+            Core.extractChannel(LeftMiddleBlueValue, LeftMiddlefinalBlue, 2);
+            Core.extractChannel(LeftMiddleRedValue, LeftMiddlefinalRed, 1);
+            Core.extractChannel(LeftBlueValue, LeftfinalBlue, 2);
+            Core.extractChannel(LeftRedValue, LeftfinalRed, 1);
+
 
             Scalar MiddleBlueAvg = Core.mean(MiddlefinalBlue);
             Scalar MiddleRedAvg = Core.mean(MiddlefinalRed);
             Scalar RightBlueAvg = Core.mean(RightfinalBlue);
             Scalar RightRedAvg = Core.mean(RightfinalRed);
+
+            Scalar LeftMiddleBlueAvg = Core.mean(LeftMiddlefinalBlue);
+            Scalar LeftMiddleRedAvg = Core.mean(LeftMiddlefinalRed);
+            Scalar LeftBlueAvg = Core.mean(LeftfinalBlue);
+            Scalar LeftRedAvg = Core.mean(LeftfinalRed);
 
 
             RightBlueAvgfin = RightBlueAvg.val[0];
@@ -143,22 +190,41 @@ public class Camera{
             MiddleBlueAvgfin = MiddleBlueAvg.val[0];
             MiddleRedAvgfin = MiddleRedAvg.val[0];
 
+            LeftBlueAvgfin = LeftBlueAvg.val[0];
+            LeftRedAvgfin = LeftRedAvg.val[0];
+
+            LeftMiddleBlueAvgfin = LeftMiddleBlueAvg.val[0];
+            LeftMiddleRedAvgfin = LeftMiddleRedAvg.val[0];
+
             RightCol = RightBlueAvgfin+ RightRedAvgfin;
             MiddleCol = MiddleBlueAvgfin+ MiddleRedAvgfin;
 
-            if ( RightCol > MiddleCol +8) {
-                debugString = "Team prop is on the Right";
+            LeftCol = LeftBlueAvgfin+ LeftRedAvgfin;
+            LeftMiddleCol = LeftMiddleBlueAvgfin+ LeftMiddleRedAvgfin;
+
+            if ( RightCol > MiddleCol +6) {
+
                 location = 1;
-            } else if ( MiddleCol > RightCol+8) {
-                debugString = "Team prop is on the Middle";
+            } else if ( MiddleCol > RightCol+6) {
+
                 location = 0;
             } else {
-                debugString = "Team prop is on the Left";
+
                 location = -1;
             }
+
+
+            if ( LeftCol > LeftMiddleCol +6) {
+
+                blueLocation = 1;
+            } else if ( LeftMiddleCol > LeftCol + 6) {
+
+                blueLocation = 0;
+            } else {
+
+                blueLocation = -1;
+            }
             
-            debugString += "Right:  " + (int) RightCol;
-            debugString += "Middle:  " + (int) MiddleCol;
 
 
 

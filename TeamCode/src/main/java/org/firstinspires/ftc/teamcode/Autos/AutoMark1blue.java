@@ -31,21 +31,22 @@ public class AutoMark1blue extends OpMode {
         int Stage = 0;
         placePower=0;
         canPlace=false;
-        Location = robot.camera.getLocation();
-        telemetry.addData("Location", robot.camera.getDebugString());
+
 
     }
 
 
     public void loop() {
-        telemetry.addData("Location", robot.camera.getDebugString());
-        telemetry.addData("Stage", Stage);
+        telemetry.addData("location: ", Location);
+        telemetry.addData("Middle: ", robot.camera.LeftMiddleCol);
+        telemetry.addData("Left: ", robot.camera.LeftCol);
+
         framesRan++;
 
-        if(framesRan<10) {
-            Location = robot.camera.getLocation();
+        if(framesRan<1000) {
+            Location = robot.camera.getBlueLocation();
         }else {
-            telemetry.addData("location", Location);
+
             if (Pause < 1) {
                 if (Location == 1) {
 
@@ -72,12 +73,12 @@ public class AutoMark1blue extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                        /*case 10:
+                        case 3:
                             //turn right 11 inches
                             distance = 11;
                             forward = 0;
                             sideways = 0;
-                            rotation = 0.5;
+                            rotation = -0.5;
                             break;
                         case 4:
                             //move forward 41 inches
@@ -86,38 +87,9 @@ public class AutoMark1blue extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 5:
-                            //move left 10 inches
-                            distance = 7;
-                            forward = 0;
-                            sideways = 0.5;
-                            rotation = 0;
-                            break;
-                        case 6:
-                            //move left 3 inches and place pixal
-                            distance = 3;
-                            forward = 0;
-                            sideways = 0.1;
-                            rotation = 0;
-                            canPlace = true;
-                            break;
-                        case 7:
-                            //move back 5 inches
-                            canPlace = false;
-                            distance = 5;
-                            forward = -0.5;
-                            sideways = 0;
-                            rotation = 0;
-                            break;
-                        case 8:
-                            //move left 15 inches
-                            distance = 10;
-                            forward = 0;
-                            sideways = -0.5;
-                            rotation = 0;
-                            break;
+                        
 
-                         */
+
                     }
 
 
@@ -137,14 +109,14 @@ public class AutoMark1blue extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                       /* case 10:
+                        case 2:
                             //turn right 11 inches
                             distance = 11;
                             forward = 0;
                             sideways = 0;
-                            rotation = 0.5;
+                            rotation = -0.5;
                             break;
-                        case 4:
+                        case 3:
                             //move forward 30 inches
                             distance = 30;
                             forward = 0.5;
@@ -152,7 +124,7 @@ public class AutoMark1blue extends OpMode {
                             rotation = 0;
                             break;
 
-                        case 5:
+                        case 4:
                             //move left 3 inches and place pixal
                             distance = 3;
                             forward = 0;
@@ -160,23 +132,9 @@ public class AutoMark1blue extends OpMode {
                             rotation = 0;
                             canPlace = true;
                             break;
-                        case 6:
-                            //move back 5 inches
-                            canPlace = false;
-                            distance = 5;
-                            forward = -0.5;
-                            sideways = 0;
-                            rotation = 0;
-                            break;
-                        case 7:
-                            //move right 15 inches
-                            distance = 15;
-                            forward = 0;
-                            sideways = 0.5;
-                            rotation = 0;
-                            break;
 
-                        */
+
+
                     }
                 } else if (Location == -1) {
 
@@ -197,12 +155,12 @@ public class AutoMark1blue extends OpMode {
                             break;
                         case 2:
                             //move back 7 inches
-                            distance = 7;
+                            distance = 4;
                             forward = -0.5;
                             sideways = 0;
                             rotation = 0;
                             break;
-                            /*
+
                         case 10:
                             //turn right 11 inches
                             distance = 11;
@@ -243,7 +201,7 @@ public class AutoMark1blue extends OpMode {
                             rotation = 0;
                             break;
 
-                             */
+
 
                     }
                 }
