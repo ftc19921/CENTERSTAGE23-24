@@ -60,11 +60,18 @@ public class RealTeleop extends OpMode {
 
 
         if (gamepad2.a) {
-            robot.claw.move(1);
-        } else if (gamepad2.b) {
-            robot.claw.move(-1);
+            robot.claw.move(1f);
+        } else if (gamepad2.a) {
+            robot.claw.move(-1f);
         } else {
             robot.claw.move(0);
+        }
+        if(gamepad2.left_trigger>gamepad2.right_trigger){
+            robot.microPlacer.place(1,true);
+        }else if(gamepad2.left_trigger<gamepad2.right_trigger){
+            robot.microPlacer.place(-1,true);
+        }else{
+            robot.microPlacer.place(0,true);
         }
         robot.clawArm.move((float) (gamepad2.right_stick_y));
 

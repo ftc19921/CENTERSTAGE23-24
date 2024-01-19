@@ -74,7 +74,7 @@ public class AutoMark1 extends OpMode {
                             break;
                         case 10:
                             //turn right 11 inches
-                            distance = 11;
+                            distance = 9;
                             forward = 0;
                             sideways = 0;
                             rotation = 0.5;
@@ -94,12 +94,11 @@ public class AutoMark1 extends OpMode {
                             rotation = 0;
                             break;
                         case 6:
-                            //move left 3 inches and place pixal
-                            distance = 3;
+                            distance = 9;
                             forward = 0;
                             sideways = 0.1;
                             rotation = 0;
-                            canPlace = true;
+                            robot.microPlacer.place(1,true);
                             break;
                         case 7:
                             //move back 5 inches
@@ -139,29 +138,30 @@ public class AutoMark1 extends OpMode {
                             break;
                         case 2:
                             //turn right 11 inches
-                            distance = 11;
+                            distance = 9;
                             forward = 0;
                             sideways = 0;
                             rotation = 0.5;
                             break;
                         case 3:
                             //move forward 30 inches
-                            distance = 30;
-                            forward = 0.5;
+                            distance = 26;
+                            forward = 0.2;
                             sideways = 0;
                             rotation = 0;
                             break;
 
                         case 4:
                             //move left 3 inches and place pixal
-                            distance = 3;
+                            distance = 9;
                             forward = 0;
                             sideways = 0.1;
                             rotation = 0;
-                            canPlace = true;
+                            robot.microPlacer.place(1,true);
                             break;
 
                         case 5:
+                            robot.microPlacer.place(0,true);
                             //move right 15 inches
                             distance = 15;
                             forward = 0;
@@ -177,7 +177,7 @@ public class AutoMark1 extends OpMode {
                         case 0:
                             //move forward 21 inches
                             distance = 21;
-                            forward = 0.5;
+                            forward = 0.3;
                             sideways = 0;
                             rotation = 0;
                             break;
@@ -185,48 +185,73 @@ public class AutoMark1 extends OpMode {
                             //move right 5 inches
                             distance = 8;
                             forward = 0;
-                            sideways = 0.5;
+                            sideways = 0.3;
                             rotation = 0;
                             break;
                         case 2:
                             //move back 7 inches
                             distance = 7;
-                            forward = -0.5;
+                            forward = -0.3;
                             sideways = 0;
                             rotation = 0;
                             break;
 
-                        case 3:
-                            //turn right 11 inches
-                            distance = 11;
+                        case 1000:
+                            //turn right 9 inches
+                            distance = 12;
                             forward = 0;
                             sideways = 0;
-                            rotation = 0.5;
+                            rotation = 0.3;
                             break;
                         case 4:
-                            //move forward 30 inches
-                            distance = 30;
-                            forward = 0.5;
-                            sideways = 0;
+                            //move right 28 inches
+                            distance = 20;
+                            forward = 0.1;
+                            sideways = 0.3;
                             rotation = 0;
 
                             break;
                         case 5:
-                            //move left 3 inches and place pixal
-                            distance = 3;
+                            //move left 6 inches
+                            distance = 20;
+                            forward = 0;
+                            sideways = -0.3;
+                            rotation = 0;
+
+                            break;
+
+                        case 6:
+                            //move forward 30 inches
+                            distance = 28;
+                            forward = 0.3;
+                            sideways = 0;
+                            rotation = 0;
+
+                            break;
+
+                        case 7:
+                            distance = 5;
                             forward = 0;
                             sideways = 0.1;
                             rotation = 0;
-                            canPlace = true;
+                            robot.microPlacer.place(1,true);
                             break;
 
+                        case 8:
+                            //move back 15 inches
+                            distance = 7;
+                            forward = -0.1;
+                            sideways = 0;
+                            rotation = 0;
 
-                        case 6:
-                            //move right 15 inches
-                            distance = 15;
+                            break;
+                        case 9:
+                            //move back 15 inches
+                            distance = 7;
                             forward = 0;
                             sideways = 0.5;
                             rotation = 0;
+                            robot.microPlacer.place(0,true);
                             break;
 
 
@@ -263,7 +288,7 @@ public class AutoMark1 extends OpMode {
         } else {
             Stage++;
             robot.mecanumDrive.init(hardwareMap);
-            Pause = 30;
+            Pause = 30 ;
         }
 
 

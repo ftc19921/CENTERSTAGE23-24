@@ -60,17 +60,20 @@ public class Arm {
     }
 
     public static class Claw {
+
         Servo clawServo;
         public float pos = 0f;
 
         public void init(HardwareMap hardwareMap) {
             clawServo = hardwareMap.get(Servo.class, "clawServo");
+
             clawServo.setPosition(0);
         }
 
         public void move(float change) {
-            pos = (float) Math.max(Math.min(pos+(change*0.01), 1), 0);
+            pos = (float) Math.max(Math.min(pos+(change*0.1), 1), 0);
             clawServo.setPosition((double)pos);
+
         }
     }
 
