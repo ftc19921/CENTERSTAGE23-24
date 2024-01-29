@@ -66,6 +66,13 @@ public class MecanumDrive {
         odometryX=odometryPodX.getCurrentPosition();
         odometryY=odometryPodY.getCurrentPosition();
     }
+    public void resetOdometry(){
+       odometryPodX.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        odometryPodY.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        odometryPodX.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        odometryPodY.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
 
 
 }

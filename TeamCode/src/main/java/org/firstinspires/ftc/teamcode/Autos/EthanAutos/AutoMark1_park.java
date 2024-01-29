@@ -67,7 +67,7 @@ public class AutoMark1_park extends OpMode {
                             break;
                         case 2:
                             //move back 7 inches
-                            distance = 7;
+                            distance = 20;
                             forward = -0.5;
                             sideways = 0;
                             rotation = 0;

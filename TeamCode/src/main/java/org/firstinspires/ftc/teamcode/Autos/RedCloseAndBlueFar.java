@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.Robot;
 
 @Autonomous
-public class AutoMark1 extends OpMode {
+public class RedCloseAndBlueFar extends OpMode {
     Robot robot = new Robot();
     int Stage;
     int framesRan;
@@ -20,7 +20,8 @@ public class AutoMark1 extends OpMode {
     int Pause;
     double placePower;
     public boolean canPlace;
-
+    double odometryX;
+    double odometryY;
 
     @Override
     public void init() {
@@ -59,7 +60,7 @@ public class AutoMark1 extends OpMode {
                             break;
                         case 1:
                             //move left 17 inches
-                            distance = 17;
+                            distance = 14;
                             forward = 0;
 
                             sideways = -0.5;
@@ -102,7 +103,7 @@ public class AutoMark1 extends OpMode {
                             break;
                         case 7:
                             //move back 5 inches
-                            canPlace = false;
+
                             distance = 5;
                             forward = -0.5;
                             sideways = 0;
@@ -110,6 +111,7 @@ public class AutoMark1 extends OpMode {
                             break;
                         case 8:
                             //move left 15 inches
+                            canPlace = false;
                             distance = 10;
                             forward = 0;
                             sideways = -0.5;
@@ -124,7 +126,7 @@ public class AutoMark1 extends OpMode {
                     switch (Stage) {
                         case 0:
                             //move forward 28 inches
-                            distance = 28;
+                            distance = 26;
                             forward = 0.5;
                             sideways = 0;
                             rotation = 0;
@@ -136,7 +138,7 @@ public class AutoMark1 extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 2:
+                        case 10:
                             //turn right 11 inches
                             distance = 9;
                             forward = 0;
@@ -152,23 +154,27 @@ public class AutoMark1 extends OpMode {
                             break;
 
                         case 4:
-                            //move left 3 inches and place pixal
-                            distance = 9;
-                            forward = 0;
-                            sideways = 0.1;
-                            rotation = 0;
-                            robot.microPlacer.place(1,true);
-                            break;
+                            if(robot.camera.overallColor == 0){
+                                //move left 3 inches and place pixal
+                                distance = 9;
+                                forward = 0;
+                                sideways = 0.1;
+                                rotation = 0;
+                                robot.microPlacer.place(1,true);
+                                break;
+                            }
+
 
                         case 5:
-                            robot.microPlacer.place(0,true);
-                            //move right 15 inches
-                            distance = 15;
-                            forward = 0;
-                            sideways = 0.5;
-                            rotation = 0;
-                            break;
-
+                            if(robot.camera.overallColor == 0) {
+                                robot.microPlacer.place(0, true);
+                                //move right 15 inches
+                                distance = 15;
+                                forward = 0;
+                                sideways = 0.5;
+                                rotation = 0;
+                                break;
+                            }
 
                     }
                 } else if (Location == 1) {
@@ -183,7 +189,7 @@ public class AutoMark1 extends OpMode {
                             break;
                         case 1:
                             //move right 5 inches
-                            distance = 8;
+                            distance = 6;
                             forward = 0;
                             sideways = 0.3;
                             rotation = 0;
@@ -196,20 +202,23 @@ public class AutoMark1 extends OpMode {
                             rotation = 0;
                             break;
 
-                        case 1000:
-                            //turn right 9 inches
-                            distance = 12;
-                            forward = 0;
-                            sideways = 0;
-                            rotation = 0.3;
-                            break;
+                        case 10:
+                            if(robot.camera.overallColor == 0) {
+                                //turn right 9 inches
+                                distance = 12;
+                                forward = 0;
+                                sideways = 0;
+                                rotation = 0.3;
+                                break;
+                            }
                         case 4:
-                            //move right 28 inches
-                            distance = 20;
-                            forward = 0.1;
-                            sideways = 0.3;
-                            rotation = 0;
-
+                            if(robot.camera.overallColor == 0) {
+                                //move right 28 inches
+                                distance = 20;
+                                forward = 0.1;
+                                sideways = 0.3;
+                                rotation = 0;
+                            }
                             break;
                         case 5:
                             //move left 6 inches
@@ -280,15 +289,14 @@ public class AutoMark1 extends OpMode {
 
     public void auto(double Distance, double forwardPower, double sidewaysPower, double rotationalPower) {
         robot.mecanumDrive.updateOdometry();
-        double odometryX = robot.mecanumDrive.odometryX;
-        double odometryY = robot.mecanumDrive.odometryY;
+        odometryX = robot.mecanumDrive.odometryX;
+        odometryY = robot.mecanumDrive.odometryY;
         if (Math.abs(odometryX) + Math.abs(odometryY) < Distance*351){
             robot.mecanumDrive.updateOdometry();
             robot.mecanumDrive.Drive(forwardPower, sidewaysPower, rotationalPower);
         } else {
             Stage++;
-            robot.mecanumDrive.init(hardwareMap);
-            Pause = 30 ;
+            robot.mecanumDrive.resetOdometry();
         }
 
 

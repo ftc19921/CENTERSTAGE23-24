@@ -23,7 +23,7 @@ public class Camera{
     public double LeftCol;
     public double MiddleCol;
     public double LeftMiddleCol;
-
+    public int overallColor;
     String debugString;
     public int location;
     public int blueLocation;
@@ -224,7 +224,12 @@ public class Camera{
 
                 blueLocation = -1;
             }
-            
+            if(RightBlueAvgfin+ MiddleBlueAvgfin+LeftBlueAvgfin+LeftMiddleBlueAvgfin>RightRedAvgfin+MiddleRedAvgfin+LeftRedAvgfin+LeftMiddleRedAvgfin){
+                overallColor = 1;
+            }else{
+                overallColor = 0;
+            }
+
 
 
 

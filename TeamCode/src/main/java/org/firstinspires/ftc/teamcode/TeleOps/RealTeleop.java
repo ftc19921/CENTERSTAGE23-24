@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Teleops;
+package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -59,7 +59,7 @@ public class RealTeleop extends OpMode {
         robot.arm.setPower(gamepad2.left_stick_y);
 
 
-        if (gamepad2.a) {
+        if (gamepad2.b) {
             robot.claw.move(1f);
         } else if (gamepad2.a) {
             robot.claw.move(-1f);
@@ -73,7 +73,7 @@ public class RealTeleop extends OpMode {
         }else{
             robot.microPlacer.place(0,true);
         }
-        robot.clawArm.move((float) (gamepad2.right_stick_y));
+        robot.clawArm.move((float) (gamepad2.right_stick_y)/2);
 
         if (robot.arm.moving()) {
             gamepad2.rumble(0.2, 0.2, Gamepad.RUMBLE_DURATION_CONTINUOUS);
