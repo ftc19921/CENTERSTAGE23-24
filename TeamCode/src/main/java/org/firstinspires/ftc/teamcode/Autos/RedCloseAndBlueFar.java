@@ -59,7 +59,7 @@ public class RedCloseAndBlueFar extends OpMode {
                             rotation = 0;
                             break;
                         case 1:
-                            //move left 17 inches
+                            //move left 14 inches
                             distance = 14;
                             forward = 0;
 
