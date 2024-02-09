@@ -59,69 +59,36 @@ public class RedCloseAndBlueFar extends OpMode {
                             rotation = 0;
                             break;
                         case 1:
-                            //move left 17 inches
-                            distance = 14;
+                            //turn left 17 inches
+                            distance = 8;
                             forward = 0;
 
-                            sideways = -0.5;
-                            rotation = 0;
+                            sideways = 0;
+                            rotation = -0.5;
                             break;
                         case 2:
-                            //move back 7 inches
-                            distance = 4;
-                            forward = -0.5;
-                            sideways = 0;
-                            rotation = 0;
-                            break;
-                        case 10:
-                            //turn right 11 inches
-                            distance = 9;
-                            forward = 0;
-                            sideways = 0;
-                            rotation = 0.5;
-                            break;
-                        case 4:
-                            //move forward 41 inches
-                            distance = 41;
-                            forward = 0.5;
-                            sideways = 0;
-                            rotation = 0;
-                            break;
-                        case 5:
-                            //move left 10 inches
-                            distance = 7;
-                            forward = 0;
-                            sideways = 0.5;
-                            rotation = 0;
-                            break;
-                        case 6:
-                            distance = 9;
-                            forward = 0;
-                            sideways = 0.1;
-                            rotation = 0;
-                            robot.microPlacer.place(1,true);
-                            break;
-                        case 7:
-                            //move back 5 inches
 
                             distance = 5;
+                            forward = 0.5;
+
+                            sideways = 0;
+                            rotation = 0;
+                            break;
+                        case 3:
+                            //move back 7 inches
+                            distance = 8;
                             forward = -0.5;
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 8:
-                            //move left 15 inches
-                            canPlace = false;
-                            distance = 10;
+                        case 4:
+                            //move back 7 inches
+                            distance = 10000;
                             forward = 0;
-                            sideways = -0.5;
+                            sideways = 0;
                             rotation = 0;
                             break;
-
-
                     }
-
-
                 } else if (Location == 0) {
                     switch (Stage) {
                         case 0:
@@ -138,43 +105,13 @@ public class RedCloseAndBlueFar extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 10:
-                            //turn right 11 inches
-                            distance = 9;
+                        case 2:
+                            //move back 7 inches
+                            distance = 10000;
                             forward = 0;
-                            sideways = 0;
-                            rotation = 0.5;
-                            break;
-                        case 3:
-                            //move forward 30 inches
-                            distance = 26;
-                            forward = 0.2;
                             sideways = 0;
                             rotation = 0;
                             break;
-
-                        case 4:
-                            if(robot.camera.overallColor == 0){
-                                //move left 3 inches and place pixal
-                                distance = 9;
-                                forward = 0;
-                                sideways = 0.1;
-                                rotation = 0;
-                                robot.microPlacer.place(1,true);
-                                break;
-                            }
-
-
-                        case 5:
-                            if(robot.camera.overallColor == 0) {
-                                robot.microPlacer.place(0, true);
-                                //move right 15 inches
-                                distance = 15;
-                                forward = 0;
-                                sideways = 0.5;
-                                rotation = 0;
-                                break;
-                            }
 
                     }
                 } else if (Location == 1) {
@@ -189,7 +126,7 @@ public class RedCloseAndBlueFar extends OpMode {
                             break;
                         case 1:
                             //move right 5 inches
-                            distance = 6;
+                            distance = 7;
                             forward = 0;
                             sideways = 0.3;
                             rotation = 0;
@@ -201,67 +138,14 @@ public class RedCloseAndBlueFar extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-
-                        case 10:
-                            if(robot.camera.overallColor == 0) {
-                                //turn right 9 inches
-                                distance = 12;
-                                forward = 0;
-                                sideways = 0;
-                                rotation = 0.3;
-                                break;
-                            }
-                        case 4:
-                            if(robot.camera.overallColor == 0) {
-                                //move right 28 inches
-                                distance = 20;
-                                forward = 0.1;
-                                sideways = 0.3;
-                                rotation = 0;
-                            }
-                            break;
-                        case 5:
-                            //move left 6 inches
-                            distance = 20;
+                        case 3:
+                            //move back 7 inches
+                            distance = 10000;
                             forward = 0;
-                            sideways = -0.3;
-                            rotation = 0;
-
-                            break;
-
-                        case 6:
-                            //move forward 30 inches
-                            distance = 28;
-                            forward = 0.3;
                             sideways = 0;
                             rotation = 0;
-
                             break;
 
-                        case 7:
-                            distance = 5;
-                            forward = 0;
-                            sideways = 0.1;
-                            rotation = 0;
-                            robot.microPlacer.place(1,true);
-                            break;
-
-                        case 8:
-                            //move back 15 inches
-                            distance = 7;
-                            forward = -0.1;
-                            sideways = 0;
-                            rotation = 0;
-
-                            break;
-                        case 9:
-                            //move back 15 inches
-                            distance = 7;
-                            forward = 0;
-                            sideways = 0.5;
-                            rotation = 0;
-                            robot.microPlacer.place(0,true);
-                            break;
 
 
 
@@ -297,6 +181,7 @@ public class RedCloseAndBlueFar extends OpMode {
         } else {
             Stage++;
             robot.mecanumDrive.resetOdometry();
+            Pause = 50;
         }
 
 

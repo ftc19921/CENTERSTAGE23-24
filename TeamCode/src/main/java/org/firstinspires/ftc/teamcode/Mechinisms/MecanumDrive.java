@@ -16,12 +16,12 @@ public class MecanumDrive {
 
 
     public void init(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
-        backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
-        odometryPodX = hardwareMap.get(DcMotor.class, "OdometryX");
-        odometryPodY = hardwareMap.get(DcMotor.class, "OdometryY");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "0");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "1");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "2");
+        backRightMotor = hardwareMap.get(DcMotor.class, "3");
+        odometryPodX = hardwareMap.get(DcMotor.class, "ex1");
+        odometryPodY = hardwareMap.get(DcMotor.class, "ex0");
 
 
         frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -48,10 +48,10 @@ public class MecanumDrive {
         backLeftPower /=maxPower;
 
 
-        frontRightMotor.setPower(frontRightPower);
-        frontLeftMotor.setPower(frontLeftPower);
-        backRightMotor.setPower(backRightPower);
-        backLeftMotor.setPower(backLeftPower);
+        frontRightMotor.setPower(-frontRightPower);
+        frontLeftMotor.setPower(-frontLeftPower);
+        backRightMotor.setPower(-backRightPower);
+        backLeftMotor.setPower(-backLeftPower);
     }
     public void Drive(double forwardPower,double rightPower,double turnPower){
         double frontLeftPower = forwardPower+rightPower+turnPower;

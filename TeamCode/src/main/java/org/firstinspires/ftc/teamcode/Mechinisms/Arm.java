@@ -14,7 +14,7 @@ public class Arm {
     int target;
 
     public void init(HardwareMap hardwareMap) {
-        HangingMotor = hardwareMap.get(DcMotor.class, "HangingMotor");
+        HangingMotor = hardwareMap.get(DcMotor.class, "ex2");
         HangingMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         HangingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         target = 0;
@@ -65,8 +65,7 @@ public class Arm {
         public float pos = 0f;
 
         public void init(HardwareMap hardwareMap) {
-            clawServo = hardwareMap.get(Servo.class, "clawServo");
-
+            clawServo = hardwareMap.get(Servo.class, "serv3");
             clawServo.setPosition(0);
         }
 
@@ -82,7 +81,7 @@ public class Arm {
         public float currentPos = 0;
 
         public void init(HardwareMap hardwareMap) {
-            armServo = hardwareMap.get(Servo.class, "clawArm");
+            armServo = hardwareMap.get(Servo.class, "serv1");
         }
 
         public void move(float change) {
@@ -95,7 +94,7 @@ public class Arm {
         CRServo placeServo;
 
         public void init(HardwareMap hardwareMap) {
-            placeServo = hardwareMap.get(CRServo.class, "microPlaceServo");
+            placeServo = hardwareMap.get(CRServo.class, "serv2");
         }
 
         public void place(double power, boolean canPlace) {
@@ -110,8 +109,8 @@ public class Arm {
         CRServo clawServo;
         CRServo microArm;
         public void init(HardwareMap hardwareMap) {
-            clawServo = hardwareMap.get(CRServo.class, "claw");
-            microArm = hardwareMap.get(CRServo.class, "microArm");
+            clawServo = hardwareMap.get(CRServo.class, "exserv0");
+            microArm = hardwareMap.get(CRServo.class, "exservo1");
         }
 
         public void setClawPower(double power) {

@@ -32,7 +32,7 @@ public class Camera{
 
     public void init(HardwareMap hardwareMap) {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam1"), cameraMonitorViewId);
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
         webcam.setPipeline(new Pipeline());
         webcam.setMillisecondsPermissionTimeout(2500);
@@ -126,8 +126,8 @@ public class Camera{
             Rect LeftRectBlue = new Rect(10,140, (int) width/10, (int) height/8);
             Rect LeftRectRed = new Rect(10, 140, (int) width/10, (int) height/8);
 
-            Rect LeftMiddleRectBlue = new Rect(150, 120, (int) width/10, (int) height/8);
-            Rect LeftMiddleRectRed = new Rect(150, 120, (int) width/10, (int) height/8);
+            Rect LeftMiddleRectBlue = new Rect(170, 120, (int) width/10, (int) height/8);
+            Rect LeftMiddleRectRed = new Rect(170, 120, (int) width/10, (int) height/8);
 
 
 
