@@ -43,7 +43,7 @@ public class RealTeleop extends OpMode {
         } else {
             gamepad1.stopRumble();
         }
-        robot.mecanumDrive.Drive(-gamepad1.left_stick_y, gamepad1.right_stick_x, turn);
+        robot.mecanumDrive.Drive(-gamepad1.left_stick_y, gamepad1.right_stick_x, -turn);
         robot.arm.update();
 
         if (gamepad2.dpad_down) {

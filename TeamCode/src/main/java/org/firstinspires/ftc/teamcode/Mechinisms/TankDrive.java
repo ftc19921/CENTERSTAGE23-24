@@ -40,4 +40,23 @@ public class TankDrive {
        backLeftMotor.setPower(BLPower);
        backRightMotor.setPower(BRPower);
     }
+    public int getPosition(boolean right){
+        // Returns how much each wheel has turned
+        if (right) {
+            return frontRightMotor.getCurrentPosition();
+        } else {
+            return frontLeftMotor.getCurrentPosition();
+        }
+    }
+
+    public void resetPosition() {
+        frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+//        backLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
 }

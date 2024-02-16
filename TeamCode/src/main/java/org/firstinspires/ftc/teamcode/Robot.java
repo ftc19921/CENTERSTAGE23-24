@@ -22,7 +22,7 @@ public class Robot {
        //mecanumDrive.init(hardwareMap);
        //microPlacer.init(hardwareMap);
        //arm.init(hardwareMap);
-       //camera.init(hardwareMap);
+       camera.init(hardwareMap);
        //drone.init(hardwareMap);
        //clawArm.init(hardwareMap);
        //claw.init(hardwareMap);
