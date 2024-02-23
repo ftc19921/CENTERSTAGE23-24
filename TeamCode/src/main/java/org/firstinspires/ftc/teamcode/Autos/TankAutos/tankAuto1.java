@@ -11,7 +11,7 @@ public class tankAuto1 extends OpMode {
     int position;
     float forward=0;
     float turn=0;
-    int rot = 1000;
+    int rot = -1000;
     @Override
     public void init(){robot.init(hardwareMap);
         position = robot.camera.getLocation();
@@ -20,14 +20,16 @@ public class tankAuto1 extends OpMode {
     @Override
     public void loop(
     ){
-        telemetry.addData("pos:", position);
+        telemetry.addData("prop pos:", position);
+        telemetry.addData("field pos",robot.tankDrive.getPosition(true));
+        telemetry.update();
         forward=0;
         turn=0;
         switch (position){
             case -1:
                 break;
             case 0:
-                if (robot.tankDrive.getPosition(true) <= 1 * rot) {
+                if (robot.tankDrive.getPosition(true) >= 1 * rot) {
                     forward = 1;
                 }
                 break;
