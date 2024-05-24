@@ -60,7 +60,7 @@ public class RedFarAndBlueClose extends OpMode {
                             break;
                         case 1:
                             //move left 17 inches
-                            distance = 6;
+                            distance = 7;
                             forward = 0;
 
                             sideways = -0.5;
@@ -73,23 +73,14 @@ public class RedFarAndBlueClose extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 100:
-                            //turn right 11 inches
-                            distance = 11;
-                            forward = 0;
-                            sideways = 0;
-                            rotation = -0.5;
-                            break;
-                        case 4:
+
+                        case 3:
                             //move forward 41 inches
-                            distance = 41;
-                            forward = 0.5;
+                            distance = 100000;
+                            forward = 0;
                             sideways = 0;
                             rotation = 0;
                             break;
-                        
-
-
                     }
 
 
@@ -109,32 +100,14 @@ public class RedFarAndBlueClose extends OpMode {
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 100:
-                            //turn right 11 inches
-                            distance = 11;
-                            forward = 0;
-                            sideways = 0;
-                            rotation = -0.5;
-                            break;
-                        case 3:
+
+                        case 2:
                             //move forward 30 inches
-                            distance = 30;
-                            forward = 0.5;
+                            distance = 3000;
+                            forward = 0;
                             sideways = 0;
                             rotation = 0;
                             break;
-
-                        case 4:
-                            //move left 3 inches and place pixal
-                            distance = 3;
-                            forward = 0;
-                            sideways = 0.1;
-                            rotation = 0;
-                            canPlace = true;
-                            break;
-
-
-
                     }
                 } else if (Location == -1) {
 
@@ -147,59 +120,36 @@ public class RedFarAndBlueClose extends OpMode {
                             rotation = 0;
                             break;
                         case 1:
-                            //move right 14 inches
+                            //turn right 14 inches
                             distance = 14;
-                            forward = 0;
-                            sideways = 0.5;
-                            rotation = 0;
-                            break;
-                        case 2:
-                            //move back 7 inches
-                            distance = 4;
-                            forward = -0.5;
-                            sideways = 0;
-                            rotation = 0;
-                            break;
-
-                        case 10:
-                            //turn right 11 inches
-                            distance = 11;
                             forward = 0;
                             sideways = 0;
                             rotation = 0.5;
                             break;
-                        case 4:
-                            //move forward 30 inches
-                            distance = 30;
+                        case 2:
+                            //move forward 7 inches
+                            distance = 8;
                             forward = 0.5;
                             sideways = 0;
                             rotation = 0;
-
-                            break;
-                        case 5:
-                            //move left 3 inches and place pixal
-                            distance = 3;
-                            forward = 0;
-                            sideways = 0.1;
-                            rotation = 0;
-                            canPlace = true;
                             break;
 
-                        case 6:
-                            //move back 5 inches
-                            canPlace = false;
-                            distance = 5;
+                        case 3:
+                            //move back 8 inches
+                            distance = 8;
                             forward = -0.5;
                             sideways = 0;
                             rotation = 0;
                             break;
-                        case 7:
-                            //move right 15 inches
-                            distance = 15;
-                            forward = 0;
-                            sideways = 0.5;
+                        case 4:
+
+                            distance = 10000000;
+                            forward = -0;
+                            sideways = 0;
                             rotation = 0;
                             break;
+
+
 
 
 
@@ -235,7 +185,7 @@ public class RedFarAndBlueClose extends OpMode {
         } else {
             Stage++;
             robot.mecanumDrive.resetOdometry();
-
+            Pause = 50;
         }
 
 
