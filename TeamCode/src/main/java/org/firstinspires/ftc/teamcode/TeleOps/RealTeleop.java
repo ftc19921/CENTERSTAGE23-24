@@ -43,8 +43,8 @@ public class RealTeleop extends OpMode {
         } else {
             gamepad1.stopRumble();
         }
-        int x = gamepad1.left_stick_x+(gamepad1.dpad_right ? 1 : 0)+(gamepad1.dpad_left ? -1 : 0);
-        int y = gamepad1.left_stick_y+(gamepad1.dpad_up ? 1 : 0)+(gamepad1.dpad_down ? -1 : 0);
+        float x = gamepad1.left_stick_x+(gamepad1.dpad_right ? 1 : 0)+(gamepad1.dpad_left ? -1 : 0);
+        float y = gamepad1.left_stick_y+(gamepad1.dpad_up ? 1 : 0)+(gamepad1.dpad_down ? -1 : 0);
         x = Math.max(-1, Math.min(1, x));
         y = Math.max(-1, Math.min(1, y));
         robot.mecanumDrive.Drive(-y, x, turn);

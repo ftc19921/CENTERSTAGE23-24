@@ -18,9 +18,9 @@ public class autoPark extends OpMode {
     @Override
     public void loop() {
         if (frames < 10) {
-            robot.tankDrive.setPowers(1, 0);
+//            robot.tankDrive.setPowers(1, 0);
         } else {
-            robot.tankDrive.setPowers(0, 0);
+//            robot.tankDrive.setPowers(0, 0);
         }
         frames++;
     }

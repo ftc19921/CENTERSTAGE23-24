@@ -15,9 +15,6 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$/../../../FtcRobotController/build/generated/source/buildConfig/debug">
-      <sourceFolder url="file://$MODULE_DIR$/../../../FtcRobotController/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
-    </content>
     <content url="file://$MODULE_DIR$/../../../FtcRobotController/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../FtcRobotController/src/main/java" isTestSource="false" />
     </content>
