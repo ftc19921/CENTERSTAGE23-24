@@ -24,7 +24,6 @@ public class AutoMark1 extends OpMode {
     int framesRan;
     int Location;
     double distance;
-    //in Inches
     double Forward;
     double Sideways;
     double Rotation;
@@ -44,11 +43,7 @@ public class AutoMark1 extends OpMode {
 
 
     public void loop() {
-        telemetry.addData("Location", robot.camera.getDebugString());
-        framesRan++;
-        if(framesRan<4) {
-            Location = robot.camera.getLocation();
-        }
+
         telemetry.addData("location",Location);
         if (Pause < 1) {
             if (Location == -1) {

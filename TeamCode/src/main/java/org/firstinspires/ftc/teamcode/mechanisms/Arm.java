@@ -2,18 +2,11 @@ package org.firstinspires.ftc.teamcode.mechanisms;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Arm {
-    DcMotor HangingMotor;
-    public void init(HardwareMap hardwareMap){
-        HangingMotor = hardwareMap.get(DcMotor.class,"HangingMotor");
-        HangingMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    }
-    public void Hang(){
-        HangingMotor.setPower(-0.8);
-    }
-    public void DeHang(){HangingMotor.setPower(0.8);}
-    public void Stop(){
-        HangingMotor.setPower(0);
-    }
+    Servo ArmServo;
+    public void init(HardwareMap hardwareMap){ArmServo = hardwareMap.get(Servo.class,"HangingMotor");}
+    public void Extend(){ArmServo.setPosition(1);}
+    public void Retract(){ArmServo.setPosition(0);}
 }
