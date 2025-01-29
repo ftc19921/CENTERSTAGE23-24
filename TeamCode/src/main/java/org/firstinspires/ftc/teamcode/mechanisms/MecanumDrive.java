@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.mechanisms;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -10,18 +11,20 @@ public class MecanumDrive {
     DcMotor backRightMotor;
     DcMotor backLeftMotor;
     DcMotor odometryPodX;
+
     DcMotor odometryPodY;
     public double odometryX;
     public double odometryY;
-
+    public double turnOdometry;
 
     public void init(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
-        backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
-        odometryPodX = hardwareMap.get(DcMotor.class, "OdometryX");
-        odometryPodY = hardwareMap.get(DcMotor.class, "OdometryY");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "ex0");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "1");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "ex1");
+        backRightMotor = hardwareMap.get(DcMotor.class, "0");
+        odometryPodX = hardwareMap.get(DcMotor.class, "odometryX");
+        odometryPodY = hardwareMap.get(DcMotor.class, "odometryY");
+
 
 
         frontRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -31,9 +34,11 @@ public class MecanumDrive {
         odometryPodY.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         odometryPodX.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         odometryPodX.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         odometryPodY.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+
     }
     private void setPowers(double frontRightPower,double frontLeftPower,double backLeftPower,double backRightPower){
         double maxPower=1.0;
@@ -52,19 +57,21 @@ public class MecanumDrive {
         frontLeftMotor.setPower(frontLeftPower);
         backRightMotor.setPower(backRightPower);
         backLeftMotor.setPower(backLeftPower);
+
     }
-    public void Drive(double forwardPower,double rightPower,double turnPower,boolean IsTeleOp){
+    public void Drive(double forwardPower,double rightPower,double turnPower){
         double frontLeftPower = forwardPower+rightPower+turnPower;
         double backLeftPower = forwardPower-rightPower+turnPower;
         double frontRightPower = forwardPower-rightPower-turnPower;
         double backRightPower = forwardPower+rightPower-turnPower;
-
+        updateOdometry();
         setPowers(frontRightPower, frontLeftPower, backLeftPower, backRightPower);
     }
 
     public void updateOdometry(){
-        odometryX=odometryPodX.getCurrentPosition();
-        odometryY=odometryPodY.getCurrentPosition();
+        odometryX=(odometryPodX.getCurrentPosition()/158);
+        odometryY=odometryPodY.getCurrentPosition()/158;
+        turnOdometry = ((odometryX*3.14159)/180)*7;
     }
 
 

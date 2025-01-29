@@ -2,102 +2,106 @@ package org.firstinspires.ftc.teamcode.Auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.Robot;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvPipeline;
-import org.openftc.easyopencv.OpenCvWebcam;
+
+import org.firstinspires.ftc.teamcode.Roboto;
 
 @Autonomous
 public class AutoMark1 extends OpMode {
-    Robot robot = new Robot();
+    Roboto robot = new Roboto();
     int Stage;
-    int framesRan;
-    int Location;
-    double distance;
-    double Forward;
-    double Sideways;
-    double Rotation;
-    int CameraOn;
-    int Pause;
+    double DistanceForward;
+    double DistanceStrafe;
+    double MotorSpeed;
+
+    double TurnDistance;
+   // ElapsedTime Timer = new ElapsedTime();
+
+
 
 
     @Override
     public void init() {
         robot.init(hardwareMap);
-        CameraOn = 20;
-        Pause = 0;
-        framesRan = 0;
+        //Timer.reset();
         int Stage = 0;
-
+        //Timer.startTime();
     }
 
 
     public void loop() {
 
-        telemetry.addData("location",Location);
-        if (Pause < 1) {
-            if (Location == -1) {
-                switch (Stage) {
-                    case 0:
-
-                        break;
-                }
-            } else if (Location == 0) {
-                switch (Stage) {
-                    case 0:
-
-
-                        break;
-                }
-            } else if (Location == 1) {
-                switch (Stage) {
-                    case 0:
-
-
-                        break;
-
-                }
-            }
-        } else {
-            Pause--;
-            distance = 10000;
-            Forward = 0;
-            Sideways = 0;
-            Rotation = 0;
+        if(Stage==0){
+            DistanceStrafe =0;
+            DistanceForward =-27;
+            MotorSpeed=0.4;
+            robot.lift.ToTop();
+            TurnDistance = 0;
+            auto(DistanceForward, DistanceStrafe,MotorSpeed,TurnDistance);
         }
-        double odometryX = robot.mecanumDrive.odometryX;
-        double odometryY = robot.mecanumDrive.odometryY;
+        if(Stage==1){
+            robot.endEffecter.outTake();
+            //Timer.wait(10,10);
+        }
+        /*if(Stage==2){
+            TurnDistance = 0;
+            DistanceStrafe =10;
+            DistanceForward =30;
+            MotorSpeed=0.4;
+            robot.lift.ToBottom();
+            auto(DistanceForward, DistanceStrafe,MotorSpeed,TurnDistance);
+        }
+        if(Stage==3){
+            TurnDistance = 180;
+            MotorSpeed=0.4;
+            auto(DistanceForward, DistanceStrafe,MotorSpeed,TurnDistance);
+        }
 
-        auto(distance, Forward, Sideways, Rotation);
-        telemetry.addData("Distance", Math.abs(odometryX) + Math.abs(odometryY));
+        telemetry.addData("Lift:",robot.lift.wenchMotor2.getCurrentPosition());
+        telemetry.update();
+*/
     }
 
 
-    public void auto(double Distance, double forwardPower, double sidewaysPower, double rotationalPower) {
-        robot.mecanumDrive.updateOdometry();
-        double odometryX = robot.mecanumDrive.odometryX;
-        double odometryY = robot.mecanumDrive.odometryY;
-        if (Math.abs(odometryX) + Math.abs(odometryY) < Distance*1104) {
-            robot.mecanumDrive.updateOdometry();
-            robot.mecanumDrive.Drive(forwardPower, sidewaysPower, rotationalPower, false);
-        } else {
-            Stage++;
+    public void auto(double _DistanceX, double _DistanceY, double _Speed,double _DistanceTurn) {
+        double odometryX = Math.abs(robot.mecanumDrive.odometryX);
+        double odometryY = Math.abs(robot.mecanumDrive.odometryY);
+        double turnOdometry = Math.abs(robot.mecanumDrive.turnOdometry);
+        double _DistanceXAbs = Math.abs(_DistanceX);
+        double _DistanceYAbs = Math.abs(_DistanceY);
+        double _DistanceTurnAbs = Math.abs(_DistanceTurn);
+        double forward=0;
+        double straif=0;
+        double turn = 0;
 
-            Pause = 20;
+        if(odometryX<_DistanceXAbs||odometryY<_DistanceYAbs||turnOdometry<_DistanceTurn){
+            odometryX = Math.abs(robot.mecanumDrive.odometryX);
+            odometryY = Math.abs(robot.mecanumDrive.odometryY);
+            telemetry.addData("DistanceX", odometryX);
+            telemetry.addData("DistanceY",odometryY);
+            telemetry.update();
+            if(odometryX<_DistanceXAbs){
+                forward=_Speed*(_DistanceXAbs/_DistanceX);
+            }else{
+                forward=0;
+            }
+            if(odometryY<_DistanceYAbs){
+                straif=_Speed*(_DistanceYAbs/_DistanceY);
+            }else{
+                straif=0;
+            }
+            if(odometryY<_DistanceTurnAbs){
+                turn = _Speed*(_DistanceTurn/_DistanceTurnAbs);
+            }
+            robot.mecanumDrive.Drive(-forward,straif,turn);
         }
-
-
+        if((odometryX >= _DistanceXAbs) && (odometryY >= _DistanceYAbs)) {
+            robot.mecanumDrive.Drive(0, 0, 0);
+            Stage++;
+        }
     }
 
 
 }
+

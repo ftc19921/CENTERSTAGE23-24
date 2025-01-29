@@ -2,51 +2,89 @@ package org.firstinspires.ftc.teamcode.opmode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
-import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.Roboto;
 
 @TeleOp
 public class Teleop extends OpMode {
-    Robot robot = new Robot();
-
+    Roboto robot = new Roboto();
+    ColorSensor IntakeColorSensor;
+    public boolean lift;
     @Override
     public void init() {
         robot.init(hardwareMap);
+        IntakeColorSensor=hardwareMap.get(ColorSensor.class,"ColorSensor");
+        lift = false;
     }
 
     @Override
     public void loop() {
-        robot.mecanumDrive.Drive(gamepad1.right_stick_y, gamepad1.left_stick_x,gamepad1.right_trigger-gamepad1.left_trigger,true);
+        //telemetry.addData("colorSensorR", IntakeColorSensor.red());
+        //telemetry.addData("colorSensorB", IntakeColorSensor.blue());
+        //telemetry.addData("colorSensorG", IntakeColorSensor.green());
+        telemetry.addData("DistanceY", robot.mecanumDrive.odometryY);
+        telemetry.addData("DistanceX",robot.mecanumDrive.odometryX);
+        telemetry.addData("Lift",robot.lift.wenchMotor2.getCurrentPosition());
+
+        //red: r750 b170 g400
+        //blue: r141 b850 g300
+        //yellow r1300 b350 g1800
+        //lift hight 2355
+        if(robot.lift.TS.isPressed()) {
+            telemetry.addData("lseiyfgl","ksadcgy");
+            robot.lift.reset();
+        }
+        robot.mecanumDrive.Drive(gamepad1.left_stick_y, -gamepad1.right_stick_x,(-gamepad1.right_trigger+gamepad1.left_trigger)/2);
         if(gamepad2.right_trigger>gamepad2.left_trigger){
-            robot.intakeArm.Extend();
+            robot.Arm.Extend();
+        }else if(gamepad2.left_trigger>gamepad2.right_trigger){
+            robot.Arm.Retract();
+
         }
-        if(gamepad2.left_trigger>gamepad2.right_trigger){
-            robot.intakeArm.Retract();
+        if(gamepad2.dpad_left){
+            robot.endEffecter.outTake();
         }
-        if(gamepad2.dpad_down){
+        if(gamepad2.dpad_right){
+            robot.endEffecter.normalPosition();
+        }
+        if(gamepad2.a){
             robot.intake.in();
-        }else if(gamepad2.dpad_up){
+        }else if(gamepad2.b){
             robot.intake.out();
         }else{
             robot.intake.stop();
         }
-        if(gamepad2.right_bumper){
-            robot.intake.deposit();
+
+        if(gamepad2.dpad_up) {
+            robot.lift.release();
+            lift=true;
         }
+        if(gamepad2.dpad_down){
+            robot.lift.hoist();
+            lift=false;
+        }else if(lift==false){
+            robot.lift.Stop();
+        }
+
         if(gamepad2.left_bumper){
             robot.intake.normalPosition();
         }
+        if(gamepad2.right_bumper){
+            robot.intake.deposit();
+        }
         if(gamepad2.y){
-            robot.endEffecter.outTake();
+            robot.intake.vomit();
         }
-        if(gamepad2.x){
-            robot.endEffecter.normalPosition();
+        if(IntakeColorSensor.red()>600){
+            if(IntakeColorSensor.green()>1000){
+                telemetry.addLine("yellow");
+            }else{
+                telemetry.addLine("red");
+            }
+        }else if(IntakeColorSensor.blue()>500){
+            telemetry.addLine("blue");
         }
-        if(gamepad2.a){
-            robot.outakeArm.hoist();
-        }
-        if(gamepad2.b){
-            robot.outakeArm.release();
-        }
+        telemetry.update();
     }
 }

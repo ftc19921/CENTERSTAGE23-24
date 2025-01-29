@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class EndEffecter {
-    Servo wristServo;
+    public Servo wristServo;
     public void init(HardwareMap hardwareMap){
-        wristServo=hardwareMap.get(Servo.class,"");
+        wristServo=hardwareMap.get(Servo.class,"serv2");
     }
     public void outTake(){
         wristServo.setPosition(1);
