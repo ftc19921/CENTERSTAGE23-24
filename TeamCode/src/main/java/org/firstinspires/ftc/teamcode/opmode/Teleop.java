@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Roboto;
 
@@ -10,12 +11,12 @@ import org.firstinspires.ftc.teamcode.Roboto;
 public class Teleop extends OpMode {
     Roboto robot = new Roboto();
     ColorSensor IntakeColorSensor;
-    public boolean lift;
+    boolean Hoist;
     @Override
     public void init() {
         robot.init(hardwareMap);
         IntakeColorSensor=hardwareMap.get(ColorSensor.class,"ColorSensor");
-        lift = false;
+
     }
 
     @Override
@@ -25,12 +26,16 @@ public class Teleop extends OpMode {
         //telemetry.addData("colorSensorG", IntakeColorSensor.green());
         telemetry.addData("DistanceY", robot.mecanumDrive.odometryY);
         telemetry.addData("DistanceX",robot.mecanumDrive.odometryX);
-        telemetry.addData("Lift",robot.lift.wenchMotor2.getCurrentPosition());
+        telemetry.addData("Distance turned", robot.mecanumDrive.turnOdometry);
+        telemetry.addData("Lift",robot.lift.wenchMotor.getCurrentPosition());
 
         //red: r750 b170 g400
         //blue: r141 b850 g300
         //yellow r1300 b350 g1800
-        //lift hight 2355
+
+
+
+
         if(robot.lift.TS.isPressed()) {
             telemetry.addData("lseiyfgl","ksadcgy");
             robot.lift.reset();
@@ -42,6 +47,7 @@ public class Teleop extends OpMode {
             robot.Arm.Retract();
 
         }
+
         if(gamepad2.dpad_left){
             robot.endEffecter.outTake();
         }
@@ -58,14 +64,14 @@ public class Teleop extends OpMode {
 
         if(gamepad2.dpad_up) {
             robot.lift.release();
-            lift=true;
-        }
-        if(gamepad2.dpad_down){
+
+        }else if(gamepad2.dpad_down){
             robot.lift.hoist();
-            lift=false;
-        }else if(lift==false){
+
+        }else {
             robot.lift.Stop();
         }
+
 
         if(gamepad2.left_bumper){
             robot.intake.normalPosition();
@@ -76,15 +82,7 @@ public class Teleop extends OpMode {
         if(gamepad2.y){
             robot.intake.vomit();
         }
-        if(IntakeColorSensor.red()>600){
-            if(IntakeColorSensor.green()>1000){
-                telemetry.addLine("yellow");
-            }else{
-                telemetry.addLine("red");
-            }
-        }else if(IntakeColorSensor.blue()>500){
-            telemetry.addLine("blue");
-        }
+
         telemetry.update();
     }
 }
