@@ -18,12 +18,12 @@ public class MecanumDrive {
     public double turnOdometry;
 
     public void init(HardwareMap hardwareMap) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "ex0");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "2");
         frontRightMotor = hardwareMap.get(DcMotor.class, "1");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "ex1");
+        //backLeftMotor = hardwareMap.get(DcMotor.class, "ex1");
         backRightMotor = hardwareMap.get(DcMotor.class, "0");
-        odometryPodX = hardwareMap.get(DcMotor.class, "odometryX");
-        odometryPodY = hardwareMap.get(DcMotor.class, "odometryY");
+        //odometryPodX = hardwareMap.get(DcMotor.class, "odometryX");
+        //odometryPodY = hardwareMap.get(DcMotor.class, "odometryY");
 
 
 
@@ -31,10 +31,10 @@ public class MecanumDrive {
         backRightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        odometryPodY.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        odometryPodX.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        odometryPodX.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        odometryPodY.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //odometryPodY.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+       // odometryPodX.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+       // odometryPodX.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //odometryPodY.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 
